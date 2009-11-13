@@ -17,5 +17,6 @@ class Tag {
 
     static constraints = {
         name(blank: false)
+        posts()
     }
 }

@@ -8,38 +8,49 @@ package com.e4net.wolfmanblog
  */
 class Post {
 
-  static hasMany = [ comments : Comment, tags : Tag ]
+    static hasMany = [ comments : Comment, tags : Tag ]
 
-  static mapping = {
-    table 'posts'
-    body type: 'text'
-    comments sort: 'dateCreated'
-  }
-  
-  String body
-  String title
-  String author
-  String permalink
-  String guid
-  Boolean allowComments
-  Boolean commentsClosed
-  Date dateCreated
-  Date dateUpdated
+    static mapping = {
+        table 'posts'
+        body type: 'text'
+        comments sort: 'dateCreated'
+    }
+    
+    String body
+    String title
+    String author
+    String permalink
+    String guid
+    Boolean allowComments
+    Boolean commentsClosed
+    Date dateCreated
+    Date lastUpdated
 
-  static constraints = {
-    body(blank: false, maxSize: 9999999)
-    title(blank: false, maxSize: 255)
-    author(maxSize: 128)
-    permalink(blank: false, maxSize: 255)
-    guid(blank: false)
-    allowComments(nullable: true)
-    commentsClosed(nullable: true)
-  }
+    static constraints = {
+        body(blank: false, maxSize: 9999999)
+        title(blank: false, maxSize: 255)
+        author(maxSize: 128, nullable: true)
+        permalink(maxSize: 255, blank: false)
+        guid(maxSize: 64, nullable: true)
+        allowComments(nullable: true)
+        commentsClosed(nullable: true)
+        comments()
+        tags()
+    }
 
-//  def beforeCreate = {
-//    // setup permalink
-//    // create a guid
-//    guid= UUID.randomUUID().toString().replaceAll('-', '')
-//  }
-//  
+    void setTitle(String t) {
+        this.title= t
+        // setup permalink
+        permalink= t.encodeAsPermalink()
+    }
+    
+    void setPermalink(String t) {
+        // ignore if set
+    }
+
+    def beforeInsert() {
+        // create a guid
+        guid= UUID.randomUUID().toString().replaceAll('-', '')
+    }
+    
 }

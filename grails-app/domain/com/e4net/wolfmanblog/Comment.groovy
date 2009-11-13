@@ -25,11 +25,13 @@ class Comment {
   static constraints = {
     name()
     body(blank: false, maxSize: 64000)
+    guid(nullable: true)
     email()
     url()
+    post()
   }
 
-  def beforeCreate = {
+  def beforeInsert() {
     // create a guid
     guid= UUID.randomUUID().toString().replaceAll('-', '')
   }

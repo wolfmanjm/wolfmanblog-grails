@@ -12,13 +12,14 @@ class UserIntegrationTests extends GrailsUnitTestCase {
     }
 
     void testFirstSaveEver() {
-        def user = new User(name: 'joe', cryptedPassword: 'erer', salt: 'sdsd', admin: false)
+        def user = new User(name: 'joe', cryptedPassword: 'erer', admin: false)
         assertNotNull user
         assertTrue user.validate()
         assertNotNull user.save()
         assertNotNull user.id
         def foundUser = User.get(user.id)
         assertEquals 'joe', foundUser.name
+        assertEquals 'new salt', foundUser.salt
     }
 
     void testNameConstraints() {
