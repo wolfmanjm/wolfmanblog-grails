@@ -125,6 +125,6 @@
           target: deploy
          ================================= -->
     <target name="deploy" depends="war" description="--> The deploy target (initially empty)">
-        <!-- TODO -->
+        <!-- gTODO -->
     </target>
 </project>

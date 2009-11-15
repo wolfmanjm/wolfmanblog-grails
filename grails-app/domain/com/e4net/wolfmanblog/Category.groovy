@@ -1,18 +1,16 @@
 package com.e4net.wolfmanblog
-/**
- * The Categories entity.
- *
- * @author    
- *
- *
- */
-class Category {
-    static mapping = {
-         table 'categories'
-    }
-    String name
 
-    static constraints = {
-        name(blank: false, maxSize: 32)
-    }
+class Category {
+	static mapping = {
+		table 'categories'
+	}
+	static hasMany = [ posts : Post ]
+	static belongsTo = [ Post ]
+	
+	String name
+	
+	static constraints = {
+		name(blank: false, maxSize: 32)
+        posts()
+	}
 }

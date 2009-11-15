@@ -12,14 +12,13 @@ class UserIntegrationTests extends GrailsUnitTestCase {
     }
 
     void testFirstSaveEver() {
-        def user = new User(name: 'joe', cryptedPassword: 'erer', admin: false)
+        def user = new User(name: 'joe', password: 'test')
         assertNotNull user
         assertTrue user.validate()
         assertNotNull user.save()
         assertNotNull user.id
         def foundUser = User.get(user.id)
         assertEquals 'joe', foundUser.name
-        assertEquals 'new salt', foundUser.salt
     }
 
     void testNameConstraints() {
@@ -49,11 +48,11 @@ class UserIntegrationTests extends GrailsUnitTestCase {
         def tagGroovy = new Tag(name: 'groovy')
         def tagGrails = new Tag(name: 'grails')
 
-        def groovyPost = new Post(content: "A groovy post")
+        def groovyPost = new Post(body: "A groovy post")
         groovyPost.addToTags(tagGroovy)
         assertEquals 1, groovyPost.tags.size()
 
-        def bothPost = new Post(content: "A groovy and grails post")
+        def bothPost = new Post(body: "A groovy and grails post")
         bothPost.addToTags(tagGroovy)
         bothPost.addToTags(tagGrails)
         assertEquals 2, bothPost.tags.size()

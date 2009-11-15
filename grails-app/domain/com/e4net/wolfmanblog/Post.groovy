@@ -8,7 +8,7 @@ package com.e4net.wolfmanblog
  */
 class Post {
 
-    static hasMany = [ comments : Comment, tags : Tag ]
+    static hasMany = [ comments : Comment, tags : Tag, categories: Category]
 
     static mapping = {
         table 'posts'
@@ -30,7 +30,7 @@ class Post {
         body(blank: false, maxSize: 9999999)
         title(blank: false, maxSize: 255)
         author(maxSize: 128, nullable: true)
-        permalink(maxSize: 255, blank: false)
+        permalink(maxSize: 255, nullable: true)
         guid(maxSize: 64, nullable: true)
         allowComments(nullable: true)
         commentsClosed(nullable: true)
@@ -38,19 +38,11 @@ class Post {
         tags()
     }
 
-    void setTitle(String t) {
-        this.title= t
-        // setup permalink
-        permalink= t.encodeAsPermalink()
-    }
-    
-    void setPermalink(String t) {
-        // ignore if set
-    }
-
     def beforeInsert() {
         // create a guid
         guid= UUID.randomUUID().toString().replaceAll('-', '')
+        // create the permalink
+        permalink= title.encodeAsPermalink()
     }
     
 }
