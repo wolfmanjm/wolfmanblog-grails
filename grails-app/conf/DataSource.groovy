@@ -19,7 +19,7 @@ environments {
 // 	}
 	development {
 		dataSource {
-			dbCreate = "update" // one of 'create', 'create-drop','update'
+			dbCreate = "" // one of 'create', 'create-drop','update'
 			url = "jdbc:postgresql://localhost/wolfmanblog_dev"
                         driverClassName = "org.postgresql.Driver"
                         dialect = 'com.e4net.hibernate.dialect.PostgreSQL82Dialect'

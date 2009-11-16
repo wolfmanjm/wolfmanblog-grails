@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+   '-//Hibernate/Hibernate Mapping DTD 3.0//EN'
+   'http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd'>
+
+<hibernate-mapping>
+   <database-object>
+      <create>
+	CREATE UNIQUE INDEX permalink_idx ON posts (permalink);
+	CREATE UNIQUE INDEX name_idx ON users ( lower(name) );
+	ALTER TABLE posts ALTER COLUMN permalink SET NOT NULL;
+	ALTER TABLE posts ALTER COLUMN guid SET NOT NULL; 
+      </create>
+      <drop> 
+	DROP INDEX name_idx;
+	DROP INDEX permalink_idx;
+      </drop>
+      <dialect-scope name='com.e4net.hibernate.dialect.PostgreSQL82Dialect' />
+   </database-object>
+</hibernate-mapping> 

@@ -15,5 +15,4 @@ web-app/index.gsp
 *.class
 out
 target
-ddl.sql
 .emacs.desktop

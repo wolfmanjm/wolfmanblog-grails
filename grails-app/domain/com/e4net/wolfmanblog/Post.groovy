@@ -8,12 +8,14 @@ package com.e4net.wolfmanblog
  */
 class Post {
 
-    static hasMany = [ comments : Comment, tags : Tag, categories: Category]
+    static hasMany = [ comments : Comment, tags : Tag, categories: Category
+	]
 
     static mapping = {
         table 'posts'
         body type: 'text'
         comments sort: 'dateCreated'
+        //permalink column:'permalink', index:'Permalink_Idx'
     }
     
     String body
