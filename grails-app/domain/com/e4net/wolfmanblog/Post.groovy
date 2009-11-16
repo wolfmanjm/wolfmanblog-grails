@@ -32,7 +32,11 @@ class Post {
         body(blank: false, maxSize: 9999999)
         title(blank: false, maxSize: 255)
         author(maxSize: 128, nullable: true)
-        permalink(maxSize: 255, nullable: true)
+        // make sure the permalink will be unique
+        permalink(maxSize: 255, nullable: true,
+                  validator: { val, obj ->
+                      Post.countByPermalink(obj.title?.encodeAsPermalink()) == 0
+                  })
         guid(maxSize: 64, nullable: true)
         allowComments(nullable: true)
         commentsClosed(nullable: true)
