@@ -35,7 +35,9 @@ class Post {
         // make sure the permalink will be unique
         permalink(maxSize: 255, nullable: true,
                   validator: { val, obj ->
-                      Post.countByPermalink(obj.title?.encodeAsPermalink()) == 0
+							   true
+							   // need to only do this on create
+							   //Post.countByPermalink(obj.title?.encodeAsPermalink()) == 0
                   })
         guid(maxSize: 64, nullable: true)
         allowComments(nullable: true)
@@ -50,5 +52,33 @@ class Post {
         // create the permalink
         permalink= title.encodeAsPermalink()
     }
-    
+
+	// return a version of the body for display
+	// for now we only need to convert the <typo code> tags
+	def forDisplay() {
+		String s= body.replaceAll(/<typo:code\s+lang=\"(.*)\">/, "<script type='syntaxhighlighter' class='brush: \$1'><![CDATA[")
+		s.replaceAll("</typo:code>", "]]></script>")
+	}
+
+	def getYear() {
+		def c= Calendar.getInstance()
+		c.setTime(dateCreated)
+		c.get(Calendar.YEAR).toString()
+	}
+
+	def getMonth() {
+		def c= Calendar.getInstance()
+		c.setTime(dateCreated)
+		(c.get(Calendar.MONTH)+1).toString()
+	}
+
+	def getDay() {
+		def c= Calendar.getInstance()
+		c.setTime(dateCreated)
+		c.get(Calendar.DAY_OF_MONTH).toString()
+	}
+
+
 }
+
+

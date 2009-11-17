@@ -9,8 +9,12 @@
     <link charset='utf-8' href="<g:createLinkTo dir='css' file='local.css' />" media='screen' rel='stylesheet' type='text/css' />
     %{--<script src='/javascripts/jquery.js' type='text/javascript'></script>--}%
     <!-- %script{ :src => "/javascripts/jquery.form.js", :type => "text/javascript"} -->
-    %{--<script src='/javascripts/application.js' type='text/javascript'></script>--}%
+    %{--<script src='/javascripts/application.js'
+    type='text/javascript'></script>--}%
+    <g:layoutHead />
+    <g:javascript library="application" />
 </head>
+
 <body>
 <div id='wrapper'>
     <div id='blog-header'>
@@ -32,15 +36,15 @@
 
         </div>
         <div id='sidebar'>
-            <g:sidebar name="google_search" />
-            <g:sidebar name="contact"/>
-            <g:sidebar name="links" />
-            <g:sidebar name="syndicate" />
-            <g:sidebar name="categories" />
-            <g:sidebar name="tags" />
-            <g:sidebar name="recent_comments" />
-            <g:sidebar name="recent_posts" />
-            <g:sidebar name="statics" />
+            <sidebar:sidebar name="google_search" />
+            <sidebar:sidebar name="contact"/>
+            <sidebar:sidebar name="links" />
+            <sidebar:sidebar name="syndicate" />
+            <sidebar:sidebar name="categories" />
+            <sidebar:sidebar name="tags" />
+            <sidebar:sidebar name="recent_comments" />
+            <sidebar:sidebar name="recent_posts" />
+            <sidebar:sidebar name="statics" />
             <!-- = sidebar :ads -->
         </div>
     </div>
