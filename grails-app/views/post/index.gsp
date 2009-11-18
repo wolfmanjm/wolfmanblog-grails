@@ -1,11 +1,10 @@
+<%@ page import="com.e4net.wolfmanblog.Post" %>
+
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="layout" content="blog" />
-    <g:set var="entityName" value="${message(code: 'post.label', default: 'Post')}" />
-    <title><g:message code="default.create.label" args="[entityName]" /></title>
     <syntax:resources name="code" languages="['Java', 'Groovy', 'Ruby', 'Cpp', 'Erlang', 'Plain', 'Xml']" />
-
   </head>
 
   <body>
@@ -23,16 +22,16 @@
           </span>
         </p>
 
-        <markdown:renderHtml> ${post.forDisplay()} </markdown:renderHtml>
+        <blog:renderHtml> ${post.forDisplay()} </blog:renderHtml>
 
         <p class='meta'>
           Posted in
-          <blog:categories post='$post'></blog:categories>
+          <blog:categories post='${post}'></blog:categories>
           <strong>&nbsp;|&nbsp;</strong>
           Tags
-          <blog:tags post='$post'></blog:tags>
+          <blog:tags post='${post}'></blog:tags>
           <strong>&nbsp;|&nbsp;</strong>
-          <blog:numComments data='$post'></blog:numComments>
+          <blog:numComments post='${post}'></blog:numComments>
         </p>
 
         <blog:permalink post='${post}'> Show </blog:permalink>

@@ -61,21 +61,15 @@ class Post {
 	}
 
 	def getYear() {
-		def c= Calendar.getInstance()
-		c.setTime(dateCreated)
-		c.get(Calendar.YEAR).toString()
+		dateCreated[Calendar.YEAR].toString()
 	}
 
 	def getMonth() {
-		def c= Calendar.getInstance()
-		c.setTime(dateCreated)
-		(c.get(Calendar.MONTH)+1).toString()
+		(dateCreated[Calendar.MONTH]+1).toString()
 	}
 
 	def getDay() {
-		def c= Calendar.getInstance()
-		c.setTime(dateCreated)
-		c.get(Calendar.DAY_OF_MONTH).toString()
+		dateCreated[Calendar.DAY_OF_MONTH].toString()
 	}
 
 

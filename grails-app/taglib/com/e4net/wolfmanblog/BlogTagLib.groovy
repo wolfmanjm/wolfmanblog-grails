@@ -10,7 +10,7 @@ class BlogTagLib {
 
 	def permalink = { attrs, body ->
 	    def post= attrs.post
-		out << link(controller: 'post', action: 'show', params: [year: post.year, month: post.month, day: post.day, title: post.permalink], absolute: attrs.absolute){ body() }
+		out << link(controller: 'post', action: 'showByPermalink', params: [year: post.year, month: post.month, day: post.day, id: post.permalink], absolute: attrs.absolute){ body() }
 	}
 
 	def numComments = { attrs ->
@@ -32,7 +32,7 @@ class BlogTagLib {
 
     def tags = { attrs ->
 		def l= []
-	    def a= attrs.post.categories
+	    def a= attrs.post.tags
 	    a.each { i ->
 	         l << link(controller: "posts", action: "listByTag"){ i.name }
 	    }
