@@ -19,7 +19,5 @@ class Static {
         body(blank: false)
         pos(nullable: true)
     }
-    String toString() {
-        return "${id}" 
-    }
+
 }

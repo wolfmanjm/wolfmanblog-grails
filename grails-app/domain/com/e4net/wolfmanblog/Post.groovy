@@ -36,7 +36,7 @@ class Post {
         permalink(maxSize: 255, nullable: true,
                   validator: { val, obj ->
 							   true
-							   // need to only do this on create
+							   // TODO need to only do this on create
 							   //Post.countByPermalink(obj.title?.encodeAsPermalink()) == 0
                   })
         guid(maxSize: 64, nullable: true)
@@ -48,7 +48,7 @@ class Post {
 
     def beforeInsert() {
         // create a guid
-        guid= UUID.randomUUID().toString().replaceAll('-', '')
+        guid= UUID.randomUUID().toString()
         // create the permalink
         permalink= title.encodeAsPermalink()
     }

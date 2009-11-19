@@ -23,17 +23,17 @@ class Comment {
   static belongsTo = [ post : Post ]
 
   static constraints = {
-    name()
+    name(nullable: true)
     body(blank: false, maxSize: 64000)
     guid(nullable: true)
-    email()
-    url()
+    email(nullable: true)
+    url(nullable: true)
     post()
   }
 
   def beforeInsert() {
     // create a guid
-    guid= UUID.randomUUID().toString().replaceAll('-', '')
+    guid= UUID.randomUUID().toString()
   }
       
 }

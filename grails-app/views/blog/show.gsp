@@ -1,11 +1,11 @@
-
 <%@ page import="com.e4net.wolfmanblog.Post" %>
 
 <html>
   <head>
-    <meta content='blog' name='layout' />
+    <meta name="layout" content="blog" />
+
     %{--<syntax:resources languages='${scanCodeLanguages(post)}' name='code' />--}%
-    <syntax:resources name="code" languages="['Java', 'Groovy', 'Ruby', 'Cpp', 'Erlang', 'Plain', 'Xml']" />
+    %{--<syntax:resources name="code" languages="['Java', 'Groovy', 'Ruby', 'Cpp', 'Erlang', 'Plain', 'Xml']" />--}%
   </head>
   <body>
     <div class='post'>
