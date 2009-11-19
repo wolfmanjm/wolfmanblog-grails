@@ -14,9 +14,18 @@ Interesting points
   sequences explained
   [here](http://blog.wolfman.com/articles/2009/11/11/using-postgresql-with-grails)
 * Uses Cucumber and Webrat/mechanize to do integration tests
+* As Grails/Hibernate does not seem to create indices on Postgresql
+  I put the index creation in the `grails-app/conf/hibernate` directory,
+  and turn off the automatic schema generation, and do a manual
+  `> grails schema-export`
+  `> psql wolfmanblog_dev < ddl.sql`
   
+	  
+
+
+  
+	  
 
 TODO
 ----
-
 1. Finish it
