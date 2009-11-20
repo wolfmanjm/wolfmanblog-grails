@@ -10,7 +10,7 @@ class Category {
 	String name
 	
 	static constraints = {
-		name(blank: false, maxSize: 32)
+		name(blank: false, maxSize: 32, unique: true)
         posts()
 	}
 }

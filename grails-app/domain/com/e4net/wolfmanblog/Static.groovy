@@ -9,6 +9,7 @@ package com.e4net.wolfmanblog
 class Static {
     static mapping = {
          table 'statics'
+		 body type: 'text'
     }
     String title
     String body

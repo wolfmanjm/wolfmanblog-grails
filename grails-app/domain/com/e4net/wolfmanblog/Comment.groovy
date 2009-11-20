@@ -18,7 +18,7 @@ class Comment {
   String url
   String guid
   Date dateCreated
-  Date dateUpdated
+  Date lastUpdated
 
   static belongsTo = [ post : Post ]
 
