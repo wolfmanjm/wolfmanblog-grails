@@ -50,7 +50,7 @@
     </g:each>
     <p>
       <div id='pagination'>Older posts:</div>
-      <g:paginate total='${Post.count()}'></g:paginate>
+      <g:paginate total="${postCount}" max="4"></g:paginate>
     </p>
     <blog:isAuthenticated>
       <g:link action='new' controller='post'>

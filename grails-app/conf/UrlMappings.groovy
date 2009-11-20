@@ -9,6 +9,7 @@ class UrlMappings {
 		// /articles/tag/id
 		"/articles/tag/$id"(controller: 'post', action: 'listByTag')
 		
+		"/posts"(controller: 'post', action: 'index')
 		"/post/new"(controller: 'post', action: 'new')
 		"/post/show/$id"(controller: 'post', action: 'show')
 		"/post/$id"(controller: 'post', action: 'showById')

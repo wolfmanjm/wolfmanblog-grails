@@ -44,4 +44,12 @@ class BlogTagLib {
 			out << body()
 	}
 
+	// preserve newlines and white space in body
+	def preserve = {attrs, body ->
+		body().toString().eachLine {
+			def ln= it
+			out << ln.replaceAll(' ', '&nbsp;') + "<br />\n"
+		}
+	}
+
 }
