@@ -29,9 +29,12 @@
             <p class='logged-in'> Logged in as wolfman </p>
           </blog:isAuthenticated>
 
-          ${"message.notice"}
-          ${"message.error"}
-
+          <g:if test="${flash.message}">
+			<div class="flash">
+				${flash.message}
+			</div>
+		  </g:if>
+          
           <g:layoutBody />
 
         </div>
