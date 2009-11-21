@@ -8,7 +8,10 @@
   </head>
 
   <body>
-
+	<g:if test='${!posts}'>
+		<h2>Nothing found</h2>
+	</g:if>
+	
     <g:each var='post' in='${posts}'>
       <div class='post'>
         <h2>

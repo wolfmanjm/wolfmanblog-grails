@@ -14,9 +14,9 @@ class Post {
     static mapping = {
         table 'posts'
         body type: 'text'
+		sort dateCreated:"desc" 
         comments sort: 'dateCreated'
-        //permalink column:'permalink', index:'Permalink_Idx'
-    }
+     }
     
     String body
     String title

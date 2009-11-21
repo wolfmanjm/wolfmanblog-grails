@@ -1,7 +1,7 @@
 class UrlMappings {
 	static mappings = {
 		// http://blog.wolfman.com/articles/2009/11/11/using-postgresql-with-grails
-		"/articles/$year/$month/$day/$id"(controller: 'post', action: 'showByPermalink')
+		"/articles/$year/$month/$day/$id"(controller: 'post', action: 'show')
 
 		// /articles/category/id
 		"/articles/category/$id"(controller: 'post', action: 'listByCategory')
@@ -11,7 +11,6 @@ class UrlMappings {
 		
 		"/posts"(controller: 'post', action: 'index')
 		"/post/new"(controller: 'post', action: 'new')
-		"/post/show/$id"(controller: 'post', action: 'show')
 		"/post/$id"(controller: 'post', action: 'showById')
 		"/post/upload"(controller: "post"){
 			action= [POST:"upload"]
