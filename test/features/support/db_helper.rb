@@ -46,26 +46,26 @@ class DBHelper
   end
 
   def add_user(name, password, salt)
-    @db[:users] << {:name => name, :crypted_password => password, :salt => salt}
+    @db[:users] << {:name => name, :crypted_password => password, :salt => salt, :version => 0}
   end
 
   def add_post(h)
-    @db[:posts].insert(h.merge(:date_created => Time.now.iso8601, :last_updated => Time.now.iso8601, :guid => "guid:#{rand(1000000)}"))
+    @db[:posts].insert(h.merge(:date_created => Time.now.iso8601, :last_updated => Time.now.iso8601, :guid => "guid:#{rand(1000000)}", :version => 0))
   end
 
   def add_comment(postid, comment, by)
-    @db[:comments].insert(:post_id => postid, :body => comment, :name => by, :date_created => Time.now.iso8601, :last_updated => Time.now.iso8601)
+    @db[:comments].insert(:post_id => postid, :body => comment, :name => by, :date_created => Time.now.iso8601, :last_updated => Time.now.iso8601, :version => 0)
   end
 
   def tag_post(postid, tag)
     r= @db[:tags].filter(:name => tag).first
-    id= r.nil? ? @db[:tags].insert(:name => tag) : r[:id]
+    id= r.nil? ? @db[:tags].insert(:name => tag, :version => 0) : r[:id]
     @db[:posts_tags] << {:post_id => postid, :tag_id => id}
   end
 
   def categorize_post(postid, cat)
     r= @db[:categories].filter(:name => cat).first
-    id= r.nil? ? @db[:categories].insert(:name => cat) : r[:id]
+    id= r.nil? ? @db[:categories].insert(:name => cat, :version => 0) : r[:id]
     @db[:posts_categories] << {:post_id => postid, :category_id => id}
   end
 end

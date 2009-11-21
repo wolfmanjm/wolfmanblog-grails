@@ -85,11 +85,15 @@ Given /^post (\d+) has category "([^\"]*)"$/ do |id, cats|
 end
 
 Then /^the post is tagged "([^\"]*)"$/ do |tags|
-  tags= tags.split(',').collect{ |t| t.strip }.join(',')
-  response_body.should have_selector("p.meta:contains('#{tags}')")
+  tags= tags.split(',').collect{ |t| t.strip }
+  tags.each do |t|
+    response_body.should have_selector("p.meta:contains('#{t}')")
+  end
 end
 
 Then /^the post is in category "([^\"]*)"$/ do |cats|
   cats= cats.split(',').collect{ |t| t.strip }.join(',')
-  response_body.should have_selector("p.meta:contains('#{cats}')")
+  cats.each do |c|
+    response_body.should have_selector("p.meta:contains('#{c}')")
+  end
 end

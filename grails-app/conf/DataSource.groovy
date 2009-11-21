@@ -34,8 +34,8 @@ environments {
 //			url = "jdbc:hsqldb:mem:testDb"
 //		}
 		dataSource {
-			dbCreate = "create-drop" // one of 'create', 'create-drop','update'
-			url = "jdbc:postgresql://localhost/wolfmanblog_dev"
+			dbCreate = "" // one of 'create', 'create-drop','update'
+			url = "jdbc:postgresql://localhost/wolfmanblog_test"
                         driverClassName = "org.postgresql.Driver"
                         dialect = 'com.e4net.hibernate.dialect.PostgreSQL82Dialect'
                         logSql = true

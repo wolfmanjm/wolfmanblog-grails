@@ -5,7 +5,7 @@ Feature: Show
 
   Scenario: Click the title to show
     Given 2 posts exist
-    When I go to /
+    When I go to /posts
     And I follow "post 1"
     Then the request should succeed
     And I should see only post 1
@@ -15,7 +15,7 @@ Feature: Show
     And post 1 is tagged "tag1,tag2"
     And post 1 has category "cat1,cat2"
 
-    When I go to /
+    When I go to /posts
     And I follow "post 1"
     Then the request should succeed
     And I should see only post 1
