@@ -19,7 +19,7 @@
       </p>
 
       <blog:renderHtml>
-        ${post.forDisplay()}
+        ${post.body}
       </blog:renderHtml>
 
       <p class='meta'>

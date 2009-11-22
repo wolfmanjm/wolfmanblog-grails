@@ -53,13 +53,6 @@ class Post {
         permalink= title.encodeAsPermalink()
     }
 
-	// return a version of the body for display
-	// for now we only need to convert the <typo code> tags
-	def forDisplay() {
-		String s= body.replaceAll(/<typo:code\s+lang=\"(.*)\">/, "<script type='syntaxhighlighter' class='brush: \$1'><![CDATA[")
-		s.replaceAll("</typo:code>", "]]></script>")
-	}
-
 	def getYear() {
 		dateCreated[Calendar.YEAR].toString()
 	}

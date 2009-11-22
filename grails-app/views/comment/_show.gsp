@@ -11,7 +11,7 @@
     delete_button url(:delete_comment, :commentid => comment), 'Delete comment', :class => 'delete'
   </blog:isAuthenticated>
   <br />
-  <blog:renderHtml>
-  	${comment.body.encodeAsHTML()}
-  </blog:renderHtml>
+  <blog:renderComment>
+  	${comment.body}
+  </blog:renderComment>
 </li>

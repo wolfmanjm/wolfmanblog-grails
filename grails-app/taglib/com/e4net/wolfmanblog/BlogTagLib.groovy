@@ -4,8 +4,39 @@ class BlogTagLib {
 	static namespace = "blog"
 
 	def renderHtml = {attrs, body ->
+		// convert the <typo code> tags to use syntax Highlighter
+		String s= body().replaceAll(/<typo:code\s+lang=\"(.*)\">/, "<script type='syntaxhighlighter' class='brush: \$1'><![CDATA[")
+		s= s.replaceAll("</typo:code>", "]]></script>")
+
 		def m = new com.petebevin.markdown.MarkdownProcessor();
-		out << m.markdown(body().toString());
+		out << m.markdown(s);
+	}
+
+	// there are several ways to do this, but basically for comments I want to 
+    // wrap long lines
+    // preserve code
+	// escape all tags
+	// So convert any < or > to entities first
+	// if the line starts with tab or 4 or more spaces then wrap in <pre> 
+	def renderComment = {attrs, body ->
+		def b=  body().toString().replaceAll('<', '&lt;').replaceAll('>', '&gt;')
+		def inpre= false
+		b.eachLine() {
+			if(it =~ /(^\t|    ).*/) {
+				if(inpre){
+					out << it << '\n'
+				}else{
+					out << "<pre>\n" << it << '\n'
+					inpre= true
+				}
+			}else {
+				if(inpre) {
+					out << "</pre>\n"
+					inpre= false
+				}
+				out << it << '\n'
+			}
+		}
 	}
 
 	def permalink = {attrs, body ->

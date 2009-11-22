@@ -25,7 +25,7 @@
           </span>
         </p>
 
-        <blog:renderHtml> ${post.forDisplay()} </blog:renderHtml>
+        <blog:renderHtml> ${post.body} </blog:renderHtml>
 
         <p class='meta'>
           Posted in
