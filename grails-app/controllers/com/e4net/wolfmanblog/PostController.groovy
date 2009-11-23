@@ -3,9 +3,11 @@ package com.e4net.wolfmanblog
 class PostController {
 	def defaultAction = 'index'
 	def scaffold = true
-	
+
+	static allowedMethods = [upload: "POST", delete: ["POST", "DELETE"] ]
+
 	// only allow the following if not logged in
-	def beforeInterceptor = [action:this.&auth, except:['index', 'showById', 'listByCategory', 'listByTag', 'show']]
+	def beforeInterceptor = [action:this.&auth, except:['index', 'showById', 'listByCategory', 'listByTag', 'show', 'atom']]
 	
 	// defined as a regular method so its private
 	def auth() {
@@ -58,4 +60,12 @@ class PostController {
 		def postCount = Post.createCriteria().count(query)
 		render(view: 'index', model: [posts: posts, postCount: postCount])
 	}
+
+	def atom = {
+		if(!params.max) params.max = 10
+		def list = Post.list( params )
+		def lastUpdated = list[0].lastUpdated
+		[ posts:list, lastUpdated:lastUpdated ]
+	}
+
 }

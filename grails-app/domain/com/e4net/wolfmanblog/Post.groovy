@@ -14,7 +14,7 @@ class Post {
     static mapping = {
         table 'posts'
         body type: 'text'
-		sort dateCreated:"desc" 
+		sort dateCreated: "desc" 
         comments sort: 'dateCreated'
      }
     
@@ -33,12 +33,7 @@ class Post {
         title(blank: false, maxSize: 255)
         author(maxSize: 128, nullable: true)
         // make sure the permalink will be unique
-        permalink(maxSize: 255, nullable: true,
-                  validator: { val, obj ->
-							   true
-							   // TODO need to only do this on create
-							   //Post.countByPermalink(obj.title?.encodeAsPermalink()) == 0
-                  })
+        permalink(maxSize: 255, nullable: true)
         guid(maxSize: 64, nullable: true)
         allowComments(nullable: true)
         commentsClosed(nullable: true)

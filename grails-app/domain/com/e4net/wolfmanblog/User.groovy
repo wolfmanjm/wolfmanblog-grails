@@ -14,12 +14,12 @@ class User {
 		table 'users'
 	}
 	
-	String password
 	String name
 	String cryptedPassword
 	String salt
 	Boolean admin
 	Date dateCreated
+	String password
 	
 	static transients = ['password']
 	
@@ -29,13 +29,9 @@ class User {
 			this.cryptedPassword=  [powd, salt].encodeAsPassword()
 		}
 	}
-	
-	// create a case insensitive unique name check
+
 	static constraints = {
-		name(size: 3..20, 
-//                     validator: { if(User.countByNameIlike(it) > 0) return "name.duplicate" }) // doesn't use index
-                     // this will use the name_idx index
-                     validator: { User.executeQuery("select count(*) from User where lower(name) = lower(?)", [it])[0] == 0})
+		name(size: 3..20)
 		admin(nullable: true)
 		salt(maxSize: 64, blank: false)
 		cryptedPassword(maxSize: 64, blank: false)

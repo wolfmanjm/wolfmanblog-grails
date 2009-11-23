@@ -2,6 +2,10 @@
 <module type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../.grails/1.2-M4/projects/wolfmanblog/plugins/feeds-1.5">
+      <sourceFolder url="file://$MODULE_DIR$/../../../.grails/1.2-M4/projects/wolfmanblog/plugins/feeds-1.5/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../.grails/1.2-M4/projects/wolfmanblog/plugins/feeds-1.5/grails-app/taglib" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$/../../../.grails/1.2-M4/projects/wolfmanblog/plugins/tomcat-1.2-M4">
       <sourceFolder url="file://$MODULE_DIR$/../../../.grails/1.2-M4/projects/wolfmanblog/plugins/tomcat-1.2-M4/src/groovy" isTestSource="false" />
     </content>
@@ -14,9 +18,11 @@
       <library name="Grails User Library">
         <CLASSES>
           <root url="file://$MODULE_DIR$/../../../.grails/1.2-M4/projects/wolfmanblog/plugins/tomcat-1.2-M4/lib" />
+          <root url="file://$MODULE_DIR$/../../../.grails/1.2-M4/projects/wolfmanblog/plugins/feeds-1.5/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../../../.grails/1.2-M4/projects/wolfmanblog/plugins/feeds-1.5/lib" recursive="false" />
         <jarDirectory url="file://$MODULE_DIR$/../../../.grails/1.2-M4/projects/wolfmanblog/plugins/tomcat-1.2-M4/lib" recursive="false" />
       </library>
     </orderEntry>

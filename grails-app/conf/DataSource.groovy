@@ -1,8 +1,9 @@
 dataSource {
 	pooled = true
-	driverClassName = "org.hsqldb.jdbcDriver"
-	username = "sa"
-	password = ""
+	driverClassName = "org.postgresql.Driver"
+	dialect = 'com.e4net.hibernate.dialect.PostgreSQL82Dialect'
+	username = "morris"
+	password = "test"
 }
 hibernate {
     cache.use_second_level_cache=true
@@ -11,43 +12,26 @@ hibernate {
 }
 // environment specific settings
 environments {
-// 	development {
-// 		dataSource {
-// 			dbCreate = "update" // one of 'create', 'create-drop','update'
-// 			url = "jdbc:hsqldb:file:devDB;shutdown=true"
-// 		}
-// 	}
 	development {
 		dataSource {
 			dbCreate = "" // one of 'create', 'create-drop','update'
 			url = "jdbc:postgresql://localhost/wolfmanblog_dev"
-                        driverClassName = "org.postgresql.Driver"
-                        dialect = 'com.e4net.hibernate.dialect.PostgreSQL82Dialect'
                         logSql = true
-                        username = "morris"
-                        password = "test"
 		}
 	}
 	test {
-//		dataSource {
-//			dbCreate = "create-drop"
-//			url = "jdbc:hsqldb:mem:testDb"
-//		}
 		dataSource {
 			dbCreate = "" // one of 'create', 'create-drop','update'
 			url = "jdbc:postgresql://localhost/wolfmanblog_test"
-                        driverClassName = "org.postgresql.Driver"
-                        dialect = 'com.e4net.hibernate.dialect.PostgreSQL82Dialect'
                         logSql = true
-                        username = "morris"
-                        password = "test"
 		}
 
 	}
 	production {
 		dataSource {
-			dbCreate = "update"
-			url = "jdbc:hsqldb:file:prodDb;shutdown=true"
+			dbCreate = "" // one of 'create', 'create-drop','update'
+			url = "jdbc:postgresql://localhost/wolfmanblog_production"
+                        logSql = false
 		}
 	}
 }
