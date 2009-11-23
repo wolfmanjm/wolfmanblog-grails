@@ -15,7 +15,7 @@
     <g:each var='post' in='${posts}'>
       <div class='post'>
         <h2>
-          <blog:permalink post='${post}'> ${post.title} </blog:permalink>
+          <b:permalink post='${post}'> ${post.title} </b:permalink>
         </h2>
         <p class='auth'>
           Posted by Jim Morris
@@ -25,40 +25,40 @@
           </span>
         </p>
 
-        <blog:renderHtml> ${post.body} </blog:renderHtml>
+        <b:renderHtml> ${post.body} </b:renderHtml>
 
         <p class='meta'>
           Posted in
-          <blog:categories post='${post}'></blog:categories>
+          <b:categories post='${post}'></b:categories>
           <strong>&nbsp;|&nbsp;</strong>
           Tags
-          <blog:tags post='${post}'></blog:tags>
+          <b:tags post='${post}'></b:tags>
           <strong>&nbsp;|&nbsp;</strong>
-          <blog:numComments post='${post}'></blog:numComments>
+          <b:numComments post='${post}'></b:numComments>
         </p>
 
-        <blog:permalink post='${post}'> Show </blog:permalink>
+        <b:permalink post='${post}'> Show </b:permalink>
 
-        <g:if test='session?.isAuthenticated()'>
+        <b:isAuthenticated>
           |
           <g:link action='edit' controller='post' id='${post.id}'>
             Edit
           </g:link>
-          <g:form name='delete' action='delete' method='delete' id= '${post.id}' >
-            <g:actionSubmit value="Delete" />
-          </g:form>
-        </g:if>
+		  <b:deleteButton id='${post.id}' />
+		</b:isAuthenticated>
       </div>
      
     </g:each>
     <p>
       <div id='pagination'>Older posts:</div>
-      <g:paginate total="${postCount}" max="4"></g:paginate>
+      <div class="paginateButtons">
+      	<g:paginate total="${postCount}" max="4" />
+      </div>	
     </p>
-    <blog:isAuthenticated>
+    <b:isAuthenticated>
       <g:link action='new' controller='post'>
         New
       </g:link>
-    </blog:isAuthenticated>
+    </b:isAuthenticated>
   </body>
 </html>

@@ -79,9 +79,9 @@
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name"><g:message code="comment.dateUpdated.label" default="Date Updated" /></td>
+                            <td valign="top" class="name"><g:message code="comment.lastUpdated.label" default="Last Updated" /></td>
                             
-                            <td valign="top" class="value"><g:formatDate date="${commentInstance?.dateUpdated}" /></td>
+                            <td valign="top" class="value"><g:formatDate date="${commentInstance?.lastUpdated}" /></td>
                             
                         </tr>
                     

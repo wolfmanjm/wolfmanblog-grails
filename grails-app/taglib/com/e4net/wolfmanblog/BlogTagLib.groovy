@@ -1,7 +1,7 @@
 package com.e4net.wolfmanblog
 
 class BlogTagLib {
-	static namespace = "blog"
+	static namespace = "b"
 
 	def renderHtml = {attrs, body ->
 		// convert the <typo code> tags to use syntax Highlighter
@@ -71,16 +71,21 @@ class BlogTagLib {
 	}
 
 	def isAuthenticated = {attrs, body ->
-		if(false)
+		if(session.user)
 			out << body()
 	}
 
 	// preserve newlines and white space in body
 	def preserve = {attrs, body ->
-		body().toString().eachLine {
+ 		body().toString().eachLine {
 			def ln= it
 			out << ln.replaceAll(' ', '&nbsp;') + "<br />\n"
 		}
 	}
+
+	def deleteButton = {attrs ->
+		out << g.form(action: 'delete', id: "${attrs.id}", method: 'delete', name: 'delete', 'class': 'delete')
+		out << g.actionSubmit(value: 'Delete', 'class': 'delete')
+	}		                    
 
 }

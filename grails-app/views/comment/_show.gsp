@@ -6,12 +6,11 @@
     <g:formatDate date='${comment.dateCreated}' style='full' type='datetime' />
   </cite>
 
-  <blog:isAuthenticated>
-  	TODO
-    delete_button url(:delete_comment, :commentid => comment), 'Delete comment', :class => 'delete'
-  </blog:isAuthenticated>
+  <b:isAuthenticated>
+    <b:deleteButton id=${comment.id} />
+  </b:isAuthenticated>
   <br />
-  <blog:renderComment>
+  <b:renderComment>
   	${comment.body}
-  </blog:renderComment>
+  </b:renderComment>
 </li>

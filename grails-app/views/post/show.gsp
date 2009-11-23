@@ -18,26 +18,24 @@
         </span>
       </p>
 
-      <blog:renderHtml>
+      <b:renderHtml>
         ${post.body}
-      </blog:renderHtml>
+      </b:renderHtml>
 
       <p class='meta'>
         Posted in
-        <blog:categories post='${post}' />
+        <b:categories post='${post}' />
         <strong>&nbsp;|&nbsp;</strong>
         Tags
-        <blog:tags post='${post}' />
+        <b:tags post='${post}' />
         <strong>&nbsp;|&nbsp;</strong>
-        <blog:numComments post='${post}' />
+        <b:numComments post='${post}' />
       </p>
 
-      <blog:isAuthenticated>
+      <b:isAuthenticated>
         <g:link action='edit' controller='post' id='${post.id}'>Edit</g:link>
-        <g:form action='delete' id='${post.id}' method='delete' name='delete'>
-          <g:actionSubmit value='Delete' />
-        </g:form>
-      </blog:isAuthenticated>
+		<b:deleteButton id='${post.id}' />
+      </b:isAuthenticated>
 
       <g:if test='${post.allowComments || post.comments?.size() > 0}'>
         <a name='comments'></a>
@@ -62,9 +60,9 @@
       </g:if>
       <p class='postmetadata alt'>
         <small>
-          <blog:permalink format='rss' post='${post}' title='RSS Feed'>
+          <b:permalink format='rss' post='${post}' title='RSS Feed'>
             RSS feed for this post
-          </blog:permalink>
+          </b:permalink>
         </small>
       </p>
       <a name='respond'></a>

@@ -1,6 +1,6 @@
 package com.e4net.wolfmanblog
 class SyntaxHighlighterTagLib {
-	static namespace = "syntax"
+	static namespace = "st"
 
 	static directory = "syntaxhighlighter"
 	static formatPrefix = "shBrush"

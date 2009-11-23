@@ -7,11 +7,9 @@
 
     <link charset='utf-8' href="<g:createLinkTo dir='css' file='brighthouse.css' />" media='screen' rel='stylesheet' type='text/css' />
     <link charset='utf-8' href="<g:createLinkTo dir='css' file='local.css' />" media='screen' rel='stylesheet' type='text/css' />
-    %{--<script src='/javascripts/jquery.js' type='text/javascript'></script>--}%
     <!-- %script{ :src => "/javascripts/jquery.form.js", :type => "text/javascript"} -->
-    %{--<script src='/javascripts/application.js'
-                type='text/javascript'></script>--}%
     <g:layoutHead />
+    <g:javascript library="jquery" />
     <g:javascript library="application" />
   </head>
 
@@ -25,9 +23,9 @@
       </div>
       <div id='main-wrapper'>
         <div id='main-content'>
-          <blog:isAuthenticated>
+          <b:isAuthenticated>
             <p class='logged-in'> Logged in as wolfman </p>
-          </blog:isAuthenticated>
+          </b:isAuthenticated>
 
           <g:if test="${flash.message}">
 			<div class="flash">
@@ -39,15 +37,15 @@
 
         </div>
         <div id='sidebar'>
-          <sidebar:sidebar name="google_search" />
-          <sidebar:sidebar name="contact"/>
-          <sidebar:sidebar name="links" />
-          <sidebar:sidebar name="syndicate" />
-          <sidebar:sidebar name="categories" />
-          <sidebar:sidebar name="tags" />
-          <sidebar:sidebar name="recent_comments" />
-          <sidebar:sidebar name="recent_posts" />
-          <sidebar:sidebar name="statics" />
+          <s:sidebar name="google_search" />
+          <s:sidebar name="contact"/>
+          <s:sidebar name="links" />
+          <s:sidebar name="syndicate" />
+          <s:sidebar name="categories" />
+          <s:sidebar name="tags" />
+          <s:sidebar name="recent_comments" />
+          <s:sidebar name="recent_posts" />
+          <s:sidebar name="statics" />
           <!-- = sidebar :ads -->
         </div>
       </div>

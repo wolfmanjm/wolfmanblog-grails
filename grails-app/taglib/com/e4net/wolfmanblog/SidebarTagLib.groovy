@@ -1,7 +1,7 @@
 package com.e4net.wolfmanblog
 
 class SidebarTagLib {
-	static namespace = 'sidebar'
+	static namespace = 's'
 
 	def sidebar = {attrs ->
 		def name = attrs.name
