@@ -4,6 +4,8 @@ class PostController {
 	def defaultAction = 'index'
 	def scaffold = true
 
+	def blogService
+
 	static allowedMethods = [upload: "POST", delete: ["POST", "DELETE"] ]
 
 	// only allow the following if not logged in
@@ -18,9 +20,9 @@ class PostController {
 	}
 	
 	// TODO need to optimize so only comment count is fetched
-	def index = { 
-		params.putAll([fetch: [tags: 'eager', categories: 'eager', comments:'eager'], max: 4])
-		def posts=  Post.list(params)
+	def index = {
+		log.debug "debug ${params}"
+		def posts=  Post.list([*:params, max: 4])
 		def postCount = Post.count()
 		[posts: posts, postCount: postCount]
 	}
@@ -66,6 +68,15 @@ class PostController {
 		def list = Post.list( params )
 		def lastUpdated = list[0].lastUpdated
 		[ posts:list, lastUpdated:lastUpdated ]
+	}
+
+	def upload = {
+		try {
+			blogService.createOrUpdatePost(request)
+			render(status: 200, text: "uploaded post ok")
+		}catch(MyPostException ex){
+			render(status: 406, text: ex.message)
+		}
 	}
 
 }

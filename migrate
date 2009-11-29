@@ -1,0 +1,2 @@
+sequel postgres://morris:test@localhost/wolfmanblog_dev -m ./migrations
+sequel postgres://morris:test@localhost/wolfmanblog_test -m ./migrations
