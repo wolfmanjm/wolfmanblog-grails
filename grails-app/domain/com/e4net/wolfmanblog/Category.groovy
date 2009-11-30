@@ -5,7 +5,7 @@ class Category {
 		table 'categories'
 	}
 	static hasMany = [ posts : Post ]
-	static belongsTo = [ Post ]
+	static belongsTo = Post
 	
 	String name
 	

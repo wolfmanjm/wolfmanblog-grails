@@ -1,10 +1,12 @@
 package com.e4net.wolfmanblog
 
 import org.jvyaml.YAML
+import org.hibernate.Hibernate
 
 class BlogService {
 	
 	boolean transactional = true
+	def sessionFactory
 	
 	def createNewUser(params) {
 		def userInstance = new User(params)
@@ -108,7 +110,26 @@ class BlogService {
 		
 		[title: params.title, categories: params.categories, tags: params.keywords, body: body]
 	}
-	
+
+	def getCategories() {
+		// TODO this pulls in all posts, which is bad this query would be better...
+		// select c.name, count(pc.post_id) from categories c inner join posts_categories pc on c.id=pc.category_id group by c.name
+		
+		def query= "select c.name, count(p) from Category c join c.posts as p group by c.name"
+		def result= Category.executeQuery(query, [])
+		def map = [:]
+		result.each {
+			map[it[0]] = it[1]
+		}
+		return map		
+	}
+
+	def testRawSql() {
+		def session = sessionFactory.getCurrentSession()
+		def sql= "select c.name, count(pc.post_id) from categories c inner join posts_categories pc on c.id=pc.category_id group by c.name"
+		def results = session.createSQLQuery(sql).list();
+		return results.toString()
+	}
 }
 
 class MyUserException extends RuntimeException {
