@@ -15,6 +15,8 @@ class Post {
         body type: 'text'
         sort dateCreated: "desc"
         comments sort: 'dateCreated'
+		// tags fetch:"join"
+		// categories fetch:"join"
     }
 
 	String body

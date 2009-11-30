@@ -22,7 +22,8 @@ class PostController {
 	// TODO need to optimize so only comment count is fetched
 	def index = {
 		log.debug "debug ${params}"
-		def posts=  Post.list([*:params, max: 4])
+		params.max = params.max ?: 4
+		def posts=  Post.list(params)
 		def postCount = Post.count()
 		[posts: posts, postCount: postCount]
 	}

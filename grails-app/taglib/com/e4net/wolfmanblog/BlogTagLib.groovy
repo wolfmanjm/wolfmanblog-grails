@@ -13,30 +13,37 @@ class BlogTagLib {
 	}
 
 	// there are several ways to do this, but basically for comments I want to 
-    // wrap long lines
-    // preserve code
-	// escape all tags
-	// So convert any < or > to entities first
-	// if the line starts with tab or 4 or more spaces then wrap in <pre> 
+    // wrap long lines - so allow html to do that
+    // preserve code - any leading spaces becomes nbsp, and \n is br
+	// escape all tags - convert any < or > to entities
 	def renderComment = {attrs, body ->
+		// replace all tags with entities so they display but don;t do anything
 		def b=  body().toString().replaceAll('<', '&lt;').replaceAll('>', '&gt;')
-		def inpre= false
-		b.eachLine() {
-			if(it =~ /(^\t|    ).*/) {
-				if(inpre){
-					out << it << '\n'
-				}else{
-					out << "<pre>\n" << it << '\n'
-					inpre= true
-				}
-			}else {
-				if(inpre) {
-					out << "</pre>\n"
-					inpre= false
-				}
-				out << it << '\n'
-			}
-		}
+
+		// replace all indentation with nbsp and newlines with br
+		b= b.replaceAll(/(^\s+)|(\n\s+)/, { a,b1,c1 -> a.replaceAll(' ', '&nbsp;') })
+		b=  b.replaceAll(/\n/, "<br />\n")
+		out << b
+		
+		// this would wrap indented lines in <pre> </pre>
+		// def inpre= false
+		// b.eachLine() {
+		// 	if(it =~ /(^\t|    ).*/) {
+		// 		if(inpre){
+		// 			out << it << '\n'
+		// 		}else{
+		// 			out << "<pre>\n" << it << '\n'
+		// 			inpre= true
+		// 		}
+		// 	}else {
+		// 		if(inpre) {
+		// 			out << "</pre>\n"
+		// 			inpre= false
+		// 		}
+		// 		out << it << '\n'
+		// 	}
+		// }
+        
 	}
 
 	def permalink = {attrs, body ->

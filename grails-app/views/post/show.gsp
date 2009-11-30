@@ -4,8 +4,8 @@
 <html>
   <head>
     <meta content='blog' name='layout' />
-    %{--<syntax:resources languages='${scanCodeLanguages(post)}' name='code' />--}%
-    <syntax:resources name="code" languages="['Java', 'Groovy', 'Ruby', 'Cpp', 'Erlang', 'Plain', 'Xml']" />
+    %{--<st:resources languages='${scanCodeLanguages(post)}' name='code' />--}%
+    <st:resources name="code" languages="['Java', 'Groovy', 'Ruby', 'Cpp', 'Erlang', 'Plain', 'Xml']" />
   </head>
   <body>
     <div class='post'>
