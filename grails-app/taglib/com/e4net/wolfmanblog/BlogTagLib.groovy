@@ -52,7 +52,7 @@ class BlogTagLib {
 	}
 
 	def numComments = {attrs ->
-		def n = attrs.post.comments.size()
+		def n = attrs.post.commentCount
 		if (n > 0)
 			out << link(controller: 'post', action: 'show', id: attrs.post.id, fragment: 'comments') {"${n} comments"}
 		else
@@ -61,18 +61,18 @@ class BlogTagLib {
 
 	def categories = {attrs ->
 		def l = []
-		def a = attrs.post.categories
+		def a = attrs.post.categorized
 		a.each {i ->
-			l << link(controller: "post", action: "listByCategory", id: i.name) { i.name }
+			l << link(controller: "post", action: "listByCategory", id: i) { i }
 		}
 		out << l.join(',')
 	}
 
 	def tags = {attrs ->
 		def l = []
-		def a = attrs.post.tags
+		def a = attrs.post.tagged
 		a.each {i ->
-			l << link(controller: "post", action: "listByTag", id: i.name) { i.name }
+			l << link(controller: "post", action: "listByTag", id: i) { i }
 		}
 		out << l.join(',')
 	}

@@ -6,7 +6,6 @@ import org.hibernate.Hibernate
 class BlogService {
 	
 	boolean transactional = true
-	def sessionFactory
 	
 	def createNewUser(params) {
 		def userInstance = new User(params)
@@ -112,7 +111,7 @@ class BlogService {
 	}
 
 	def getCategories() {
-		// TODO this pulls in all posts, which is bad this query would be better...
+		// TODO this pulls in all posts, which is bad this SQL query would be better...
 		// select c.name, count(pc.post_id) from categories c inner join posts_categories pc on c.id=pc.category_id group by c.name
 		
 		def query= "select c.name, count(p) from Category c join c.posts as p group by c.name"
@@ -125,10 +124,12 @@ class BlogService {
 	}
 
 	def testRawSql() {
-		def session = sessionFactory.getCurrentSession()
+		//def session = sessionFactory.getCurrentSession()
 		def sql= "select c.name, count(pc.post_id) from categories c inner join posts_categories pc on c.id=pc.category_id group by c.name"
-		def results = session.createSQLQuery(sql).list();
-		return results.toString()
+		Post.withSession { org.hibernate.Session session ->
+			def results = session.createSQLQuery(sql).list();
+			return results.toString()
+		}
 	}
 }
 
