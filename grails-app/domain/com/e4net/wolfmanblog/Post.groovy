@@ -15,8 +15,9 @@ class Post {
         body type: 'text'
         sort dateCreated: "desc"
         comments sort: 'dateCreated'
-		// tags fetch:"join"
-		// categories fetch:"join"
+		// these don't really do anything useful or what I expect
+		tags  batchSize:10
+		categories batchSize:10
     }
 
 	String body
@@ -33,7 +34,6 @@ class Post {
 		body(blank: false, maxSize: 9999999)
 		title(blank: false, maxSize: 255)
 		author(maxSize: 128, nullable: true)
-		// make sure the permalink will be unique
 		permalink(maxSize: 255, nullable: true)
 		guid(maxSize: 64, nullable: true)
 		allowComments(nullable: true)
@@ -83,6 +83,8 @@ class Post {
 		// even better would be...
 		// select t.name from tags t, posts_tags pt where t.id = pt.tag_id and pt.post_id = ?;
 		Tag.executeQuery("select t.name from Tag t join t.posts as p where p.id = ?", [this.id])
+		// if batchSize worked I could do this
+		//tags.collect { it.name }
 	}
 }
 
