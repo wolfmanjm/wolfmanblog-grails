@@ -27,9 +27,7 @@
                             <g:sortableColumn property="name" title="${message(code: 'comment.name.label', default: 'Name')}" />
                         
                             <g:sortableColumn property="body" title="${message(code: 'comment.body.label', default: 'Body')}" />
-                        
-                            <g:sortableColumn property="guid" title="${message(code: 'comment.guid.label', default: 'Guid')}" />
-                        
+                                                
                             <g:sortableColumn property="email" title="${message(code: 'comment.email.label', default: 'Email')}" />
                         
                             <g:sortableColumn property="url" title="${message(code: 'comment.url.label', default: 'Url')}" />
@@ -45,9 +43,7 @@
                             <td>${fieldValue(bean: commentInstance, field: "name")}</td>
                         
                             <td>${fieldValue(bean: commentInstance, field: "body")}</td>
-                        
-                            <td>${fieldValue(bean: commentInstance, field: "guid")}</td>
-                        
+                                               
                             <td>${fieldValue(bean: commentInstance, field: "email")}</td>
                         
                             <td>${fieldValue(bean: commentInstance, field: "url")}</td>

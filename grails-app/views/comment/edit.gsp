@@ -47,16 +47,7 @@
                                     <g:textArea name="body" cols="40" rows="5" value="${commentInstance?.body}" />
                                 </td>
                             </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="guid"><g:message code="comment.guid.label" default="Guid" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: commentInstance, field: 'guid', 'errors')}">
-                                    <g:textField name="guid" value="${commentInstance?.guid}" />
-                                </td>
-                            </tr>
-                        
+                                              
                             <tr class="prop">
                                 <td valign="top" class="name">
                                   <label for="email"><g:message code="comment.email.label" default="Email" /></label>
@@ -74,34 +65,7 @@
                                     <g:textField name="url" value="${commentInstance?.url}" />
                                 </td>
                             </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="post"><g:message code="comment.post.label" default="Post" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: commentInstance, field: 'post', 'errors')}">
-                                    <g:select name="post.id" from="${com.e4net.wolfmanblog.Post.list()}" optionKey="id" value="${commentInstance?.post?.id}"  />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="dateCreated"><g:message code="comment.dateCreated.label" default="Date Created" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: commentInstance, field: 'dateCreated', 'errors')}">
-                                    <g:datePicker name="dateCreated" precision="day" value="${commentInstance?.dateCreated}"  />
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="dateUpdated"><g:message code="comment.dateUpdated.label" default="Date Updated" /></label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: commentInstance, field: 'dateUpdated', 'errors')}">
-                                    <g:datePicker name="dateUpdated" precision="day" value="${commentInstance?.dateUpdated}"  />
-                                </td>
-                            </tr>
-                        
+                                                                     
                         </tbody>
                     </table>
                 </div>

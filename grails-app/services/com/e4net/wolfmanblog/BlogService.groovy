@@ -22,6 +22,28 @@ class BlogService {
 		return userInstance
 	}
 	
+	def addComment(params) {
+		if(!params.test.equalsIgnoreCase("no")){
+			log.debug "spambot test failed"
+			return false
+		}
+
+	    def post= Post.get(params.id)
+	    if(post) {
+			log.debug "Adding comment: ${params}"
+			params.remove('id')
+			def comment= new Comment(params)
+			// We do it this way round so that we don't have to fetch all the comments
+			// and post doesn't not get updated
+			comment.post= post
+			comment.save()
+			return true
+		}else{
+			log.debug "Failed to add comment"
+			return false
+		}
+	}
+	
 	def createOrUpdatePost(request) {
 		def h
 		try {
@@ -48,7 +70,7 @@ class BlogService {
 					if(!cat) cat= new Category(name: n)
 					post.addToCategories(cat)
 				}else{
-					cats.remove(c) // taek it out of the set so we know which ones to remove later
+					cats.remove(c) // take it out of the set so we know which ones to remove later
 				}
 			}
 			

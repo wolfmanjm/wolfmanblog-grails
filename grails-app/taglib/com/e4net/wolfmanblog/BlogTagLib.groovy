@@ -91,7 +91,7 @@ class BlogTagLib {
 	}
 
 	def deleteButton = {attrs ->
-		out << g.form(action: 'delete', id: "${attrs.id}", method: 'delete', name: 'delete', 'class': 'delete')
+		out << g.form(url: [controller: attrs.controller, action: attrs.action, id: attrs.id], method: 'DELETE', name: 'delete', 'class': 'delete')
 		out << g.actionSubmit(value: 'Delete', 'class': 'delete')
 	}		                    
 

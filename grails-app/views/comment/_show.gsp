@@ -7,7 +7,8 @@
   </cite>
 
   <b:isAuthenticated>
-    <b:deleteButton id=${comment.id} />
+  	<g:link controller='comment' action='edit' id='${comment.id}'>Edit</g:link>
+    <b:deleteButton controller='comment' action='delete' id='${comment.id}' />
   </b:isAuthenticated>
   <br />
   <b:renderComment>

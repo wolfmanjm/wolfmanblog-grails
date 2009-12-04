@@ -18,6 +18,7 @@ class Post {
 		// these don't really do anything useful or what I expect
 		tags  batchSize:10
 		categories batchSize:10
+		comments batchSize:10
     }
 
 	String body

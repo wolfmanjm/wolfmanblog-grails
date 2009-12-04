@@ -52,7 +52,7 @@
     <p>
       <div id='pagination'>Older posts:</div>
       <div class="paginateButtons">
-      	<g:paginate total="${postCount}" max="4" />
+      	<g:paginate total="${postCount}" max="4" id="${params.id}"/>
       </div>	
     </p>
     <b:isAuthenticated>
