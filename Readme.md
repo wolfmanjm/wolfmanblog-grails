@@ -6,6 +6,7 @@ This is a simple blog engine, with the basic features needed for a blog.
 
 _NOTE_ This is a work in progress, as I am learning Grails.
 
+Right now it is nearly as functional as the Merb based wolfmanblog, just a few more tweaks are needed.
 
 Interesting points
 ------------------
@@ -20,4 +21,3 @@ Interesting points
 
 TODO
 ----
-1. Finish it
