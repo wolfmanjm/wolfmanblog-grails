@@ -37,15 +37,15 @@
 
         </div>
         <div id='sidebar'>
-          %{--<s:sidebar name="google_search" />--}%
-          %{--<s:sidebar name="contact"/>--}%
-          %{--<s:sidebar name="links" />--}%
-          %{--<s:sidebar name="syndicate" />--}%
+          <g:render template="/statics/googleSearch" />
+          <g:render template="/statics/contact"/>
+          <g:render template="/statics/links" />
+          <g:render template="/statics/syndicate" />
           <sidebar:categories />
           <sidebar:tags />
           <sidebar:recentComments />
           %{--<s:sidebar name="recent_posts" />--}%
-          %{--<s:sidebar name="statics" />--}%
+          <sidebar:statics />
           <!-- = sidebar :ads -->
         </div>
       </div>

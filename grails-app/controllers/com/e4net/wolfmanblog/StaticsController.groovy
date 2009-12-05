@@ -1,7 +1,8 @@
 package com.e4net.wolfmanblog
 
-class CommentController {
-	def scaffold = true
+class StaticsController {
+	def scaffold= Static
+	def blogService
 
 	// only allow the following if not logged in
 	def beforeInterceptor = [action:this.&auth]

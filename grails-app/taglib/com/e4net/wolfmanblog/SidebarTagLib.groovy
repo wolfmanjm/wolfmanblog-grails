@@ -39,4 +39,9 @@ class SidebarTagLib {
 		def comments= Comment.list(fetch:[post:"eager"], max: 10, sort: 'dateCreated', order:'desc')
 		out << render(template: '/comment/recent', model: ['comments': comments])
 	}
+
+	def statics = {
+		def statics= Static.listOrderByPosition()
+		out << render(template: '/statics/statics', model: ['statics': statics])
+	}
 }

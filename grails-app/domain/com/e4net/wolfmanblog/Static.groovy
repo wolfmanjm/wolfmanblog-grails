@@ -7,18 +7,18 @@ package com.e4net.wolfmanblog
  *
  */
 class Static {
-    static mapping = {
-         table 'statics'
-		 body type: 'text'
-    }
-    String title
-    String body
-    Integer pos
+	static mapping = {
+		table 'statics'
+		body type: 'text'
+	}
+	String title
+	String body
+	Integer position
 
-    static constraints = {
-        title(blank: false)
-        body(blank: false)
-        pos(nullable: true)
-    }
+	static constraints = {
+		title(blank: false)
+		body(blank: false)
+		position(nullable: true)
+	}
 
 }
