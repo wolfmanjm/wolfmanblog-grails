@@ -8,6 +8,8 @@ package com.e4net.wolfmanblog
  *
  */
 class Comment {
+	static belongsTo = [ post : Post ]
+
 	static mapping = {
 		table 'comments'
 		body type: 'text'
@@ -20,8 +22,6 @@ class Comment {
 	String guid
 	Date dateCreated
 	Date lastUpdated
-	
-	static belongsTo = [ post : Post ]
 	
 	static constraints = {
 		name(nullable: true)

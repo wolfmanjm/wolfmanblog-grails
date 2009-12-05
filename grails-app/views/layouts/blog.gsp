@@ -42,8 +42,8 @@
           %{--<s:sidebar name="links" />--}%
           %{--<s:sidebar name="syndicate" />--}%
           <sidebar:categories />
-          %{--<s:sidebar name="tags" />--}%
-          %{--<s:sidebar name="recent_comments" />--}%
+          <sidebar:tags />
+          <sidebar:recentComments />
           %{--<s:sidebar name="recent_posts" />--}%
           %{--<s:sidebar name="statics" />--}%
           <!-- = sidebar :ads -->
