@@ -6,6 +6,9 @@ class UrlMappings {
 			action= 'show'
 		}
 
+		// for old links
+		"/posts/$id"(controller: 'post', action: 'showById')
+		
 		// /articles/category/id
 		"/articles/category/$id"(controller: 'post', action: 'listByCategory')
 

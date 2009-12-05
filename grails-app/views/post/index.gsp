@@ -43,8 +43,7 @@
           |
           <g:link action='edit' controller='post' id='${post.id}'>
             Edit
-          </g:link>
-		  <b:deleteButton id='${post.id}' />
+          </g:link>		  
 		</b:isAuthenticated>
       </div>
      

@@ -54,7 +54,7 @@ class BlogTagLib {
 	def numComments = {attrs ->
 		def n = attrs.post.commentCount
 		if (n > 0)
-			out << link(controller: 'post', action: 'show', id: attrs.post.id, fragment: 'comments') {"${n} comments"}
+			out << link(controller: 'post', action: 'showById', id: attrs.post.id, fragment: 'comments') {"${n} comments"}
 		else
 			out << "no comments"
 	}
