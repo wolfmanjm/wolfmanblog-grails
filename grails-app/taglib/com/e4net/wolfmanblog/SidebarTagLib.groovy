@@ -44,4 +44,9 @@ class SidebarTagLib {
 		def statics= Static.listOrderByPosition()
 		out << render(template: '/statics/statics', model: ['statics': statics])
 	}
+
+	def recentPosts = {
+		def posts= Post.listOrderByLastUpdated(order:"desc")
+		out << render(template: '/post/recent', model: [posts: posts])
+	}
 }

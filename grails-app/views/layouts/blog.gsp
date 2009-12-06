@@ -28,9 +28,7 @@
           </b:isAuthenticated>
 
           <g:if test="${flash.message}">
-			<div class="flash">
-				${flash.message}
-			</div>
+			<p class="flash">${flash.message}</p>
 		  </g:if>
           
           <g:layoutBody />
@@ -44,9 +42,8 @@
           <sidebar:categories />
           <sidebar:tags />
           <sidebar:recentComments />
-          %{--<s:sidebar name="recent_posts" />--}%
+          <sidebar:recentPosts />
           <sidebar:statics />
-          <!-- = sidebar :ads -->
         </div>
       </div>
 

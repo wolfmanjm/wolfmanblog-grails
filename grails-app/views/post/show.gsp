@@ -34,7 +34,6 @@
 
       <b:isAuthenticated>
         <g:link action='edit' controller='post' id='${post.id}'>Edit</g:link>
-		<b:deleteButton id='${post.id}' />
       </b:isAuthenticated>
 
       <g:if test='${post.allowComments || post.comments?.size() > 0}'>

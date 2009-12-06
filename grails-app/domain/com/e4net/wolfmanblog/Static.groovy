@@ -17,7 +17,7 @@ class Static {
 
 	static constraints = {
 		title(blank: false)
-		body(blank: false)
+		body(blank: false, maxSize: 999999)
 		position(nullable: true)
 	}
 

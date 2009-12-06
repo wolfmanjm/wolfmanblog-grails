@@ -92,10 +92,10 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="dateUpdated"><g:message code="comment.dateUpdated.label" default="Date Updated" /></label>
+                                    <label for="lastUpdated"><g:message code="comment.dateUpdated.label" default="Last Updated" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean: commentInstance, field: 'dateUpdated', 'errors')}">
-                                    <g:datePicker name="dateUpdated" precision="day" value="${commentInstance?.dateUpdated}"  />
+                                <td valign="top" class="value ${hasErrors(bean: commentInstance, field: 'lastUpdated', 'errors')}">
+                                    <g:datePicker name="lastUpdated" precision="day" value="${commentInstance?.lastUpdated}"  />
                                 </td>
                             </tr>
                         

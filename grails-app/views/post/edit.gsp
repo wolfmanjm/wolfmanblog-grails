@@ -35,7 +35,7 @@
                                   <label for="body"><g:message code="post.body.label" default="Body" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: postInstance, field: 'body', 'errors')}">
-                                    <g:textArea name="body" cols="40" rows="5" value="${postInstance?.body}" />
+                                    <g:textArea name="body" cols="80" rows="5" value="${postInstance?.body}" />
                                 </td>
                             </tr>
                         
@@ -44,7 +44,7 @@
                                   <label for="title"><g:message code="post.title.label" default="Title" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: postInstance, field: 'title', 'errors')}">
-                                    <g:textArea name="title" cols="40" rows="5" value="${postInstance?.title}" />
+                                    <g:textArea name="title" cols="80" rows="5" value="${postInstance?.title}" />
                                 </td>
                             </tr>
                         
