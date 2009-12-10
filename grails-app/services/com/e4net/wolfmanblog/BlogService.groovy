@@ -47,7 +47,7 @@ class BlogService {
 	def createOrUpdatePost(request) {
 		def h
 		try {
-			h= parse_upload(request.getReader())
+			h= parseUpload(request.getReader())
 		} catch (Exception ex) {
 			log.error("Failed to parse YAML: ${ex.message}", ex)
 			throw new MyPostException(message: "Failed to parse post")
