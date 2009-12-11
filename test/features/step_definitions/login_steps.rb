@@ -1,5 +1,5 @@
 Given /^I am not authenticated$/ do
-  visit path_to('/logout')
+  visit path_to('/user/logout')
 end
 
 Given /^a valid user account exists$/ do
@@ -13,14 +13,14 @@ Given /^a valid user account exists$/ do
 #    | users | salt             | 46ca4885db7cd09121ef4d9c7ba2af13de40ff9e |
 #  })
   # but for now we have to do it the hard way
-  @dbhelper.add_user('testname', '12f0d0cf9d59500b89677e3f9f037aaa993979dc', '46ca4885db7cd09121ef4d9c7ba2af13de40ff9e')
+  @dbhelper.add_user('testname', '42880c92ca5b722a8a25d8ceca050947d7f9a9ca', '184e2617-e813-4e78-9933-07426729b903')
 end
 
 When 'I login' do
-  When  'I go to /login'
-  And 'I fill in "name" with "testname"'
-  And 'I fill in "password" with "testpassword"'
-  And 'I press "Log In"'
+  When  'I go to /user/login'
+  And 'I fill in "login" with "testname"'
+  And 'I fill in "password" with "test"'
+  And 'I press "Login"'
 end
 
 Then /^I should see logged in message$/ do

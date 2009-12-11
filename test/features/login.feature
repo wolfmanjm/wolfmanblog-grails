@@ -5,12 +5,11 @@ Feature: Login
 
   Scenario Outline: Failed Login
     Given I am not authenticated
-    When I go to /login
-    And I fill in "name" with "<mail>"
+    When I go to /user/login
+    And I fill in "login" with "<mail>"
     And I fill in "password" with "<password>"
-    And I press "Log In"
-    Then the login request should fail
-    Then I should see an error message
+    And I press "Login"
+    Then I should see message "Login failed <mail>"
 
     Examples:
       | mail           | password       |
@@ -25,4 +24,5 @@ Feature: Login
     When I login
     Then the login request should succeed
     And I should see logged in message
+
 

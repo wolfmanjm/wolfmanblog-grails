@@ -2,6 +2,10 @@ Then /^I should see an? (\w+) message$/ do |message_type|
   response_body.should have_xpath("//*[@class='#{message_type}']")
 end
 
+Then /^I should see message "([^\"]*)"$/ do |message|
+  response_body.should have_selector("div.message:contains('#{message}')")
+end
+
 Then /^the (.*) ?request should fail/ do |_|
   response_code.should_not == 200
 end
@@ -18,18 +22,12 @@ Then /^the (.*) ?request should redirect to (.*)$/ do |_, uri|
   response.should redirect_to(uri)
 end
 
-# creates n posts
-Given /^(\d+) posts? exists?$/ do |n|
-  for i in (1..n.to_i) do
-    @dbhelper.add_post(:id => i, :title => "post #{i}", :body => "body of post #{i}", :permalink => "post-#{i}")
-  end
-end
-
 Then /^I should see post (\d+)$/ do |n|
   y= Time.now.year
   m= Time.now.month
   d= Time.now.day
-  response_body.should have_xpath("//h2/a[@href='/articles/#{y}/#{m}/#{d}/post-#{n}']['post #{n}']")
+  #response_body.should have_xpath("//h2/a[@href='/articles/#{y}/#{m}/#{d}/post-#{n}']['post #{n}']")
+  response_body.should have_selector("div.post h2 a[href*='/articles/#{y}/#{m}/#{d}/post-#{n}']:contains('post #{n}')")
   response_body.should have_selector("p:contains('body of post #{n}')")
 end
 
@@ -41,13 +39,6 @@ Then /^I should see only post (\d+)$/ do |n|
   response_body.should have_selector("div.post h2:contains('post #{n}')")
   response_body.should have_selector("p:contains('body of post #{n}')")
   response_body.should have_selector("form.commentform")
-end
-
-When /^I leave an? (in)?valid comment$/ do |t|
-  When 'I fill in "comment[name]" with "comment-user"'
-  And 'I fill in "comment[body]" with "my comment message"'
-  And 'I fill in "test" with ' + (t.nil? ? '"no"' : '"blahblahblah"')
-  And 'I press "Submit"'
 end
 
 Then /^I should (not)? ?see the comment$/ do |t|
@@ -67,20 +58,6 @@ Then /^I should see an unordered list containing (\d+) posts within "([^\"]*)"$/
     for i in (1..nitems.to_i) do
       content.should have_selector("li a:contains('post #{i}')")
     end
-  end
-end
-
-Given /^post (\d+) is tagged "([^\"]*)"$/ do |id, tags|
-  a= tags.split(',')
-  a.each do |t|
-    @dbhelper.tag_post(id.to_i, t.strip)
-  end
-end
-
-Given /^post (\d+) has category "([^\"]*)"$/ do |id, cats|
-  a= cats.split(',')
-  a.each do |t|
-    @dbhelper.categorize_post(id.to_i, t.strip)
   end
 end
 

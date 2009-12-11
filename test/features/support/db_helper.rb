@@ -46,7 +46,7 @@ class DBHelper
   end
 
   def add_user(name, password, salt)
-    @db[:users] << {:name => name, :crypted_password => password, :salt => salt, :version => 0}
+    @db[:users] << {:name => name, :crypted_password => password, :date_created => Time.now.iso8601, :salt => salt, :version => 0}
   end
 
   def add_post(h)

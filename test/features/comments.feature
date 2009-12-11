@@ -14,7 +14,5 @@ Feature: Comments
     Given 2 posts exist
     When I go to /posts/2
     And I leave an invalid comment
-    Then the request should fail
-    And I should see "Error accepting your comment"
     When I go to /posts/2
     Then I should not see the comment

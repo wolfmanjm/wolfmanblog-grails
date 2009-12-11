@@ -15,7 +15,9 @@ class PostController {
 	// defined as a regular method so its private
 	def auth() {
 		if(!session.user) {
-			redirect(controller: 'user', action: 'login')
+			log.info "unauthorized user attempted request: ${params}"
+			render(status: 401, text: "You need to be logged in to do that")
+			//redirect(controller: 'user', action: 'login')
 			return false
 		}
 	}
