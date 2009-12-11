@@ -8,6 +8,15 @@ _NOTE_ This is a work in progress, as I am learning Grails.
 
 Right now it is nearly as functional as the Merb based wolfmanblog, just a few more tweaks are needed.
 
+Funtionality
+------------
+* Posts are uploaded as a simple Yaml formatted file.
+* The post body is in markdown format
+* Has tag cloud and each post can have several tags
+* Each post has a category
+* There is a configurable sidebar, where you can show recent comments,
+links, ads etc
+
 Interesting points
 ------------------
 * Uses Postgresql for the Database
@@ -21,3 +30,4 @@ Interesting points
 
 TODO
 ----
+* add rss and atom feeds
