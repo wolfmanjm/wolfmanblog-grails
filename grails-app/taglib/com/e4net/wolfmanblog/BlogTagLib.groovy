@@ -4,8 +4,9 @@ class BlogTagLib {
 	static namespace = "b"
 
 	def renderHtml = {attrs, body ->
+		// TODO make gutter optional
 		// convert the <typo code> tags to use syntax Highlighter
-		String s= body().replaceAll(/<typo:code\s+lang=\"(.*)\">/, "<script type='syntaxhighlighter' class='brush: \$1'><![CDATA[")
+		String s= body().replaceAll(/<typo:code\s+lang=\"(.*)\">/, "<script type='syntaxhighlighter' class='brush: \$1;gutter:false'><![CDATA[")
 		s= s.replaceAll("</typo:code>", "]]></script>")
 
 		def m = new com.petebevin.markdown.MarkdownProcessor();

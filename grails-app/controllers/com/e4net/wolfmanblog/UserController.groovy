@@ -25,15 +25,18 @@ class UserController {
 
 		if(user && [params.password, user.salt].encodeAsPassword() == user.cryptedPassword){
 			session.user = user
+			log.info "User ${user.name} logged in"
 			flash.message = "Logged in as ${user.name}!"
 			redirect(controller:"post", action:"index")
 		}else{
+			log.info "User ${user.name} failed to log in"
 			flash.message = "Login failed ${params.login}"
 			redirect(action:"login")
 		}
 	}
 
 	def logout = {
+		log.info "User ${session.user.name} logged out"
 		flash.message = "Goodbye ${session.user.name}"
 		session.user = null
 		redirect(controller:"post", action:"list")

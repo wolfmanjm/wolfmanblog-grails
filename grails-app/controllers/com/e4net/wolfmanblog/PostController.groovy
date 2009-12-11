@@ -86,11 +86,13 @@ class PostController {
 		[ posts:list, lastUpdated:lastUpdated ]
 	}
 	
-	def upload = {
+	def upload = {		
 		try {
 			blogService.createOrUpdatePost(request)
+			log.info "Uploaded Post"
 			render(status: 200, text: "uploaded post ok")
 		}catch(MyPostException ex){
+			log.error "Failed to upload", ex
 			render(status: 406, text: ex.message)
 		}
 	}

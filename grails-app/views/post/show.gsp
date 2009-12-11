@@ -5,7 +5,7 @@
   <head>
     <meta content='blog' name='layout' />
     %{--<st:resources languages='${scanCodeLanguages(post)}' name='code' />--}%
-    <st:resources name="code" languages="['Java', 'Groovy', 'Ruby', 'Cpp', 'Erlang', 'Plain', 'Xml']" />
+    <st:resources name="code" languages="['Java', 'JScript', 'Groovy', 'Ruby', 'Cpp', 'Erlang', 'Plain', 'Xml']" />
   </head>
   <body>
     <div class='post'>

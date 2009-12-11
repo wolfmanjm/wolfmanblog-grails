@@ -44,10 +44,10 @@ class BlogService {
 		}
 	}
 	
-	def createOrUpdatePost(request) {
+	def createOrUpdatePost(request) {		
 		def h
 		try {
-			h= parseUpload(request.getReader())
+			h= parseUpload(request.reader)
 		} catch (Exception ex) {
 			log.error("Failed to parse YAML: ${ex.message}", ex)
 			throw new MyPostException(message: "Failed to parse post")
@@ -55,21 +55,23 @@ class BlogService {
 		
 		def post= Post.findByTitle(h.title)
 		if(!post) {
+			log.info "Creating a new post ${h.title}"
 			post= new Post(title: h.title, body: h.body)
 		}else{
+			log.info "Updating post ${h.title}"
 			post.body= h.body
 		}
 		
 		try {
 			// add any new categories and remove any not specified
-			def cats= post.categories
+			def cats= post.categories.collect { it }
 			h.categories.each { n ->
-				c= cats.find{it.name == n}
+				def c= cats.find{it.name == n} // does it currently have this category?
 				if(!c){ // does not have this category yet
 					def cat= Category.findByName(n)
 					if(!cat) cat= new Category(name: n)
 					post.addToCategories(cat)
-				}else{
+				}else{ // does have it
 					cats.remove(c) // take it out of the set so we know which ones to remove later
 				}
 			}
@@ -78,9 +80,9 @@ class BlogService {
 			cats.each { post.removeFromCategories(it) }
 			
 			// now do the same with the tags
-			def tags= post.tags
-			h.tags.split(' ').each { n ->
-				t= tags.find{it.name == n}
+			def tags= post.tags.collect{ it }
+			h.tags.each { n ->
+				def t= tags.find{it.name == n}
 				if(!t){ // does not have this tag yet
 					def tag= Tag.findByName(n)
 					if(!tag) tag= new Tag(name: n)
@@ -105,6 +107,7 @@ class BlogService {
 		// we need to indent the body by one space for this version of YAML
 		def str= ""
 		def inBody= false
+		
 		rdr.eachLine {
 			if(inBody){
 				str += " $it\n"
@@ -114,6 +117,10 @@ class BlogService {
 				}
 				str += "$it\n"
 			}
+		}
+
+		if(!str){
+			throw new Exception("blank post")
 		}
 		
 		// read documents, there are two, the first has the params, the second is the actual post
@@ -128,8 +135,14 @@ class BlogService {
 		if(!params?.categories) {
 			throw new Exception("blank categories")
 		}
+
+		// keywords are space separated string need to convert to list
+		def tags= []
+		if(params.keywords) {
+			tags= params.keywords.split(' ')
+		}
 		
-		[title: params.title, categories: params.categories, tags: params.keywords, body: body]
+		[title: params.title, categories: params.categories, tags: tags, body: body]
 	}
 
 	def getCategories() {

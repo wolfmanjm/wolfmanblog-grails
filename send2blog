@@ -1,0 +1,2 @@
+curl -b cookies -c cookies -d "login=admin&password=test" http://localhost:8080/wolfmanblog/user/authenticate
+curl -v -b cookies -c cookies -H "Content-Type: application/x-yaml" --data-binary @$1 http://localhost:8080/wolfmanblog/post/upload
