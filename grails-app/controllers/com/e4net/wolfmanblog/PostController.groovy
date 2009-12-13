@@ -10,7 +10,7 @@ class PostController {
 	def blogService
 	
 	// only allow the following if not logged in
-	def beforeInterceptor = [action:this.&auth, except:['index', 'showById', 'listByCategory', 'listByTag', 'show', 'addComment', 'atom']]
+	def beforeInterceptor = [action:this.&auth, except:['index', 'showById', 'listByCategory', 'listByTag', 'show', 'addComment', 'rss', 'showRss']]
 	
 	// defined as a regular method so its private
 	def auth() {
@@ -81,13 +81,78 @@ class PostController {
 			redirect(action: 'showById', id: id, fragment: "comments")
 	}
 	
-	def atom = {
-		if(!params.max) params.max = 10
-		def list = Post.list( params )
-		def lastUpdated = list[0].lastUpdated
-		[ posts:list, lastUpdated:lastUpdated ]
+	def rss = {
+		render(contentType:"text/xml") {
+			rss(version: "2.0", 'xmlns:dc': "http://purl.org/dc/elements/1.1/"){
+				channel {
+					title("Wolfmans Howlings") 
+					link("http://blog.wolfman.com")
+					description("A programmers Blog about Ruby, Rails and a few other issue")
+					language("en-us")
+					ttl("40")
+					Post.list(max: 4).each() { article ->
+						item {
+							title(article.title)
+							author("Jim Morris")
+							pubDate(article.dateCreated.encodeAsRfc822())
+							link(createLink(controller: 'post', action: 'show',
+							                params: [year: article.year, month: article.month, day: article.day, id: article.permalink],
+							                absolute: true))
+							guid("urn:uuid:${article.guid}")
+							description(b.renderHtml(){ article.body })
+						}
+					}
+				}
+			}
+		}
 	}
-	
+
+	// Note this may be access by id or permalink
+	def showRss = {
+		def post
+		if(params.id =~ /^\d+$/)
+			post=  Post.get(params.id)
+		else
+			post=  Post.findByPermalink(params.id)
+
+		if(! post){
+			render(status: 400, text: "article not found")
+			return
+		}
+		def url= createLink(controller: 'post', action: 'show',
+		                    params: [year: post.year, month: post.month, day: post.day, id: post.permalink],
+		                    absolute: true)
+		
+		render(contentType:"text/xml") {
+			rss(version: "2.0", 'xmlns:dc': "http://purl.org/dc/elements/1.1/"){
+				channel {
+					title("Wolfmans Howlings: ${post.title}") 
+					link(url)
+					description("A programmers Blog about Ruby, Rails and a few other issue")
+					language("en-us")
+					ttl("40")
+					item {
+						title(post.title)
+						author("Jim Morris")
+						pubDate(post.lastUpdated.encodeAsRfc822())
+						link(url)
+						guid("urn:uuid:${post.guid}")
+						description(b.renderHtml(){ post.body })
+					}
+					post.comments.each { comment ->
+						item {
+							title("Comment by ${comment.name?.encodeAsHTML()}")
+							description(comment.body?.encodeAsHTML())
+							pubDate(comment.dateCreated.encodeAsRfc822())
+							link("${url}#comment-#{comment.id}")
+							guid("urn:uuid:${comment.guid}")
+						}
+					}
+				}
+			}
+		}
+	}
+		
 	def upload = {		
 		try {
 			blogService.createOrUpdatePost(request)
