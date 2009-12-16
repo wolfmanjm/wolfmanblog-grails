@@ -16,22 +16,22 @@ environments {
 		dataSource {
 			dbCreate = "" // one of 'create', 'create-drop','update'
 			url = "jdbc:postgresql://localhost/wolfmanblog_dev"
-                        logSql = true
+			logSql = true
 		}
 	}
 	test {
 		dataSource {
 			dbCreate = "" // one of 'create', 'create-drop','update'
 			url = "jdbc:postgresql://localhost/wolfmanblog_test"
-                        logSql = true
+			logSql = true
 		}
 
 	}
 	production {
 		dataSource {
 			dbCreate = "" // one of 'create', 'create-drop','update'
-			url = "jdbc:postgresql://localhost/wolfmanblog_production"
-                        logSql = false
+			url = "jdbc:postgresql://localhost:1234/wolfmanblog_grails_prod"
+			logSql = false
 		}
 	}
 }

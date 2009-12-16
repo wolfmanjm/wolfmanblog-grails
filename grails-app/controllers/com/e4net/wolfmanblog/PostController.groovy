@@ -6,21 +6,7 @@ class PostController {
 	static allowedMethods = [save: "POST", update: "POST", upload: "POST", delete: ["POST", "DELETE"], addComment: "POST" ]
 	
 	def scaffold = true
-	
 	def blogService
-	
-	// only allow the following if not logged in
-	def beforeInterceptor = [action:this.&auth, except:['index', 'showById', 'listByCategory', 'listByTag', 'show', 'addComment', 'rss', 'showRss']]
-	
-	// defined as a regular method so its private
-	def auth() {
-		if(!session.user) {
-			log.info "unauthorized user attempted request: ${params}"
-			render(status: 401, text: "You need to be logged in to do that")
-			//redirect(controller: 'user', action: 'login')
-			return false
-		}
-	}
 	
 	def index = {
 		// don't allow more than 10 to show, even if asked by request
