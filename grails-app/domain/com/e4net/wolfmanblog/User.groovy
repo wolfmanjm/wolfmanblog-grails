@@ -31,7 +31,7 @@ class User {
 	}
 
 	static constraints = {
-		name(size: 3..20)
+		name(size: 3..20, unique: true)
 		admin(nullable: true)
 		salt(maxSize: 64, blank: false)
 		cryptedPassword(maxSize: 64, blank: false)

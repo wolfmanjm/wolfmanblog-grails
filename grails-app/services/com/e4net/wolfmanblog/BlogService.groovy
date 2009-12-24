@@ -99,7 +99,7 @@ class BlogService {
 			throw new MyPostException(message: "validation errors: ${ex.errors}")
 		} catch(org.springframework.dao.DataIntegrityViolationException ex){
 			log.error("Failed to save post: ${ex.message}", ex)
-			throw new MyPostException(message: "duplicate title")
+			throw new MyPostException(message: "duplicate permalink")
 		}
 	}
 	
