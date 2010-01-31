@@ -46,7 +46,7 @@ class SidebarTagLib {
 	}
 
 	def recentPosts = {
-		def posts= Post.listOrderByLastUpdated(order:"desc")
+		def posts= Post.listOrderByLastUpdated(order:"desc", max: 5)
 		out << render(template: '/post/recent', model: [posts: posts])
 	}
 }

@@ -6,16 +6,7 @@ class UrlMappings {
 			action= 'show'
 		}
 
-		// for old links
-		"/posts/$id"(controller: 'post', action: 'showById')
-		
-		// /articles/category/id
-		"/articles/category/$id"(controller: 'post', action: 'listByCategory')
-
-		// /articles/tag/id
-		"/articles/tag/$id"(controller: 'post', action: 'listByTag')
-		
-		"/posts/upload"(controller: 'post', action: 'upload')
+		// old style links using id of post
 		"/posts/$id"{
 			controller= 'post'
 			action= 'showById'
@@ -23,6 +14,14 @@ class UrlMappings {
 				id(matches:/\d+/)
 			}
 		}
+
+		// /articles/category/id
+		"/articles/category/$id"(controller: 'post', action: 'listByCategory')
+
+		// /articles/tag/id
+		"/articles/tag/$id"(controller: 'post', action: 'listByTag')
+		
+		"/posts/upload"(controller: 'post', action: 'upload')
 		"/posts"(controller: 'post', action: 'index')
 	
 		"/$controller/$action?/$id?"{

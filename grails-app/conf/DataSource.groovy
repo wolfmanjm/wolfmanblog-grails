@@ -30,7 +30,7 @@ environments {
 	production {
 		dataSource {
 			dbCreate = "" // one of 'create', 'create-drop','update'
-			url = "jdbc:postgresql://localhost:1234/wolfmanblog_grails_prod"
+			url = "jdbc:postgresql://localhost/wolfmanblog_grails_prod"
 			logSql = false
 		}
 	}

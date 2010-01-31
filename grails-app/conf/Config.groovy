@@ -43,7 +43,7 @@ grails.logging.jul.usebridge = true
 // set per-environment serverURL stem for creating absolute links
 environments {
     production {
-        grails.serverURL = "http://www.changeme.com"
+        grails.serverURL = "http://ubuntu800:8080/${appname}"
     }
     development {
         grails.serverURL = "http://localhost:8080/${appName}"
@@ -60,7 +60,7 @@ log4j = {
     // appender:
     //
     appenders {
-        console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n'), threshold: org.apache.log4j.Level.DEBUG 
+        console name:'stdout', layout:pattern(conversionPattern: '%-4r [%t] %-5p %c %x - %m%n'), threshold: org.apache.log4j.Level.DEBUG 
     }
 
     debug "grails.app"
@@ -82,6 +82,6 @@ log4j = {
 
 
 grails.gorm.default.mapping = {
-   // cache true
+	//cache true
    id generator:'identity'
 }

@@ -1,6 +1,6 @@
 <div class='sidebar-node'>
-  <h3>Recent Articles</h3>
-  <div style='height:400px;width:250px;overflow:scroll;'>
+  <h3>Recently Updated</h3>
+  <div>
     <ul>
 	  <g:each var='post' in='${posts}'>
 		<li>
