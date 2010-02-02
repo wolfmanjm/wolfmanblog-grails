@@ -92,7 +92,7 @@ class PostController {
 			}
 		}
 	}
-
+	
 	// Note this may be access by id or permalink
 	def showRss = {
 		def post
@@ -100,11 +100,13 @@ class PostController {
 			post=  Post.get(params.id)
 		else
 			post=  Post.findByPermalink(params.id)
+		
 
 		if(! post){
 			render(status: 400, text: "article not found")
 			return
 		}
+		
 		def url= createLink(controller: 'post', action: 'show',
 		                    params: [year: post.year, month: post.month, day: post.day, id: post.permalink],
 		                    absolute: true)
@@ -138,7 +140,7 @@ class PostController {
 			}
 		}
 	}
-		
+	
 	def upload = {		
 		try {
 			blogService.createOrUpdatePost(request)
