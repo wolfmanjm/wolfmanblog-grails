@@ -6,7 +6,7 @@ class SidebarTagLib {
 
 	def categories = {
 		def m= blogService.getCategories()
-		out << render(template: '/category/categories', model: ['categories': m.collect{k,v -> [name: k, count: v]}])
+		out << render(template: '/category/categories', model: ['categories': m])
 	}
 
 	def tags = {         		

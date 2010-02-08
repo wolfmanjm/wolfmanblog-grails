@@ -1,6 +1,7 @@
 dataSource {
 	pooled = true
 	driverClassName = "org.postgresql.Driver"
+	//driverClassName = "com.p6spy.engine.spy.P6SpyDriver" // use this driver to enable p6spy logging
 	dialect = 'com.e4net.hibernate.dialect.PostgreSQL82Dialect'
 	username = "morris"
 	password = "test"

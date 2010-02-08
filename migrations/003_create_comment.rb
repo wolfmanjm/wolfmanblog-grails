@@ -9,7 +9,7 @@ class CreateComment < Sequel::Migration
       text :email
       text :url
       varchar :guid, :size => 255
-      foreign_key :post_id, :posts, :type => :bigint, :null => false
+      foreign_key :post_id, :posts, :type => :bigint, :null => false, :index => true
       timestamp :date_created, :null => false
       timestamp :last_updated, :null => false
     end

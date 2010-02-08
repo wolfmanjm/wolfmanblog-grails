@@ -6,6 +6,7 @@ class Tag {
   
     static mapping = {
          table 'tags'
+         cache usage:'nonstrict-read-write'
      }
     String name
 

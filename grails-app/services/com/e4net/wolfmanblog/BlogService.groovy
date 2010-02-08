@@ -145,17 +145,15 @@ class BlogService {
 		[title: params.title, categories: params.categories, tags: tags, body: body]
 	}
 
+	// return a list with the category name and post count
 	def getCategories() {
-		// TODO this pulls in all posts, which is bad this SQL query would be better...
-		// select c.name, count(pc.post_id) from categories c inner join posts_categories pc on c.id=pc.category_id group by c.name
-		
-		def query= "select c.name, count(p) from Category c join c.posts as p group by c.name"
-		def result= Category.executeQuery(query, [])
-		def map = [:]
-		result.each {
-			map[it[0]] = it[1]
-		}
-		return map		
+		// this pulls in all posts, which is bad so use a raw sql query
+		// def query= "select c.name, count(p) from Category c join c.posts as p group by c.name"
+		// def result= Category.executeQuery(query, [])
+		def sql= "select c.name, count(pc.post_id) from categories c inner join posts_categories pc on c.id=pc.category_id group by c.name"
+		Category.withSession { org.hibernate.Session session ->
+			session.createSQLQuery(sql).list();
+		}.collect(){ [name: it[0], count: it[1]] }
 	}
 
 	def testRawSql() {

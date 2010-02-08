@@ -43,7 +43,7 @@ grails.logging.jul.usebridge = true
 // set per-environment serverURL stem for creating absolute links
 environments {
     production {
-        grails.serverURL = "http://ubuntu800:8080/${appname}"
+	    grails.serverURL = "http://localhost:8080/${appname}"
     }
     development {
         grails.serverURL = "http://localhost:8080/${appName}"
