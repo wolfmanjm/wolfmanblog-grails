@@ -68,22 +68,22 @@ class Post {
 	}
 	
 	def getCategorized() {
-		// TODO not exactly optimal as it fetches from posts for no reason, but better than the n+1 selects categories does
-		// what is better is this SQL select...
-		/*
 		def sql= "select c.name from categories c inner join posts_categories pc on c.id=pc.category_id where pc.post_id=:id"
-		Tag.withSession { org.hibernate.Session session ->
-			session.createSQLQuery(sql).setInteger("id", this.id).list();
+		Post.withSession { org.hibernate.Session session ->
+			session.createSQLQuery(sql).setLong("id", this.id).list().collect{it}
 		}
-		*/
 		
-		Category.executeQuery("select c.name from Category c join c.posts as p where p.id = ?", [this.id])
+		//  not exactly optimal as it fetches from posts for no reason, but better than the n+1 selects categories does
+		//Category.executeQuery("select c.name from Category c join c.posts as p where p.id = ?", [this.id])
 	}
 	
 	def getTagged(){
-		// even better would be...
-		// select t.name from tags t, posts_tags pt where t.id = pt.tag_id and pt.post_id = ?;
-		Tag.executeQuery("select t.name from Tag t join t.posts as p where p.id = ?", [this.id])
+		def sql= "select t.name from tags t, posts_tags pt where t.id = pt.tag_id and pt.post_id = :id"
+		Post.withSession { org.hibernate.Session session ->
+			session.createSQLQuery(sql).setLong("id", this.id).list().collect{it}
+		}
+		// Not optimal as it fetches post
+		//Tag.executeQuery("select t.name from Tag t join t.posts as p where p.id = ?", [this.id])
 	}
 }
 

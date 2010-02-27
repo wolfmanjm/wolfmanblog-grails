@@ -17,14 +17,14 @@ environments {
 		dataSource {
 			dbCreate = "" // one of 'create', 'create-drop','update'
 			url = "jdbc:postgresql://localhost/wolfmanblog_dev"
-			logSql = true
+			logSql = false
 		}
 	}
 	test {
 		dataSource {
 			dbCreate = "" // one of 'create', 'create-drop','update'
 			url = "jdbc:postgresql://localhost/wolfmanblog_test"
-			logSql = true
+			logSql = false
 		}
 
 	}

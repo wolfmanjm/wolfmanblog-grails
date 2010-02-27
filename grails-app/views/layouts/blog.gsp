@@ -34,16 +34,17 @@
           <g:layoutBody />
 
         </div>
+
         <div id='sidebar'>
           <g:render template="/statics/googleSearch" />
           <g:render template="/statics/contact"/>
           <g:render template="/statics/links" />
           <g:render template="/statics/syndicate" />
-          <sidebar:categories />
-          <sidebar:tags />
-          <sidebar:recentComments />
-          <sidebar:recentPosts />
-          <sidebar:statics />
+          <g:include controller="sidebar" action="categories" />
+          <g:include controller="sidebar" action="tags" />
+ 	      <g:include controller="sidebar" action="recentComments" />
+          <g:include controller="sidebar" action="recentPosts" />
+          <g:include controller="sidebar" action="statics" />
         </div>
       </div>
 

@@ -65,6 +65,10 @@ log4j = {
 
     debug "grails.app"
     debug "com.e4net"
+    debug "grails.plugin.springcache"
+	
+    info "com.linkedin.grails"
+
 	
     error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
 	       'org.codehaus.groovy.grails.web.pages', //  GSP
@@ -85,3 +89,26 @@ grails.gorm.default.mapping = {
 	//cache true
    id generator:'identity'
 }
+
+springcache {
+	cachingModels {
+		PostController.cacheName = "postControllerCache"
+		SidebarController.cacheName = "sidebarControllerCache"
+	}
+	flushingModels {
+		PostController.cacheNames = "postControllerCache"
+		All.cacheNames = "postControllerCache,sidebarControllerCache"
+	}
+	
+	caches {
+		postControllerCache {
+			blocking = true
+			eternal = true
+		}
+		sidebarControllerCache {
+			blocking = true
+			eternal = true
+		}
+	}
+}
+ 

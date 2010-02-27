@@ -3,11 +3,12 @@ class AdminFilters {
 	def excludes= [
 		post: ['index', 'showById', 'listByCategory', 'listByTag', 'show', 'addComment', 'rss', 'showRss'],
 		comment: ['rss'],
-		user: ['login', 'authenticate', 'logout']
+		user: ['login', 'authenticate', 'logout'],
+		all: ['sidebar'] // excludes all actions in this controller
 	]
 
 	def excluded(controller, action) {
-		return excludes[controller]?.contains(action)
+		return excludes['all'].contains(controller) || excludes[controller]?.contains(action)
 	}
 	
 	def filters = {

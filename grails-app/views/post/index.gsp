@@ -26,7 +26,6 @@
         </p>
 
         <b:renderHtml> ${post.body} </b:renderHtml>
-
         <p class='meta'>
           Posted in
           <b:categories post='${post}'></b:categories>
@@ -46,8 +45,8 @@
           </g:link>		  
 		</b:isAuthenticated>
       </div>
-     
     </g:each>
+
     <p>
       <div id='pagination'>Older posts:</div>
       <div class="paginateButtons">
