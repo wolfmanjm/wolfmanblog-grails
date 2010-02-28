@@ -12,7 +12,7 @@ class PostController {
 	def blogService
 
 	@Cacheable(modelId = "PostController")
-	def index = {
+	def index = {		
 		// don't allow more than 10 to show, even if asked by request
 		params.max = Math.min(params.max ? params.max.toInteger() : 4, 10)
 		def posts=  Post.list(params)
@@ -62,7 +62,7 @@ class PostController {
 		render(view: 'index', model: [posts: posts, postCount: postCount])
 	}
 	
-	@CacheFlush(modelId = "PostController")
+	@CacheFlush(modelId = "All")
 	def addComment = {
 		log.debug "add comment: ${params}"
 		def id= params.id

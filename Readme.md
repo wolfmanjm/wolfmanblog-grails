@@ -4,10 +4,20 @@ A Grails based Blog Engine
 This is a simple blog engine, with the basic features needed for a blog.
 [Originally](http://github.com/wolfmanjm/wolfmanblog) written in Merb and ported to Grails.
 
-_NOTE_ This is a work in progress, as I am learning Grails.
+_NOTE_ This is still a work in progress, although it is functional.
 
-Right now it is as functional as the Merb based wolfmanblog, and seems
-a lot faster.
+Right now it is as functional as the Merb based wolfmanblog.
+
+I am rather disappointed with the performance. The raw non-cached
+performance is about the same as the Ruby/Merb version which is a lot
+faster with the view caching turned on.
+
+I have added the springcache plugin and started to cache selected
+fragments, and have it running at least as fast as the Merb version
+with caching on.
+
+The startup time of the war when in production mode is abysmal, around
+90 seconds before it can accept connections, no idea why.
 
 Funtionality
 ------------
