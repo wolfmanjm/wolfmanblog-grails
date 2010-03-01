@@ -16,6 +16,10 @@ I have added the springcache plugin and started to cache selected
 fragments, and have it running at least as fast as the Merb version
 with caching on.
 
+_NOTE_ version 1.2 of springcache plugin is required it can currently be installed with...
+
+`> grails install-plugin springcache 1.2-SNAPSHOT`
+
 The startup time of the war when in production mode is abysmal, around
 90 seconds before it can accept connections, no idea why.
 
