@@ -37,13 +37,6 @@
         </p>
 
         <b:permalink post='${post}'> Show </b:permalink>
-
-        <b:isAuthenticated>
-          |
-          <g:link action='edit' controller='post' id='${post.id}'>
-            Edit
-          </g:link>		  
-		</b:isAuthenticated>
       </div>
     </g:each>
 
@@ -53,10 +46,5 @@
       	<g:paginate total="${postCount}" max="4" id="${params.id}"/>
       </div>	
     </p>
-    <b:isAuthenticated>
-      <g:link action='new' controller='post'>
-        New
-      </g:link>
-    </b:isAuthenticated>
   </body>
 </html>

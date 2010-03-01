@@ -13,6 +13,7 @@ class Comment {
 	static mapping = {
 		table 'comments'
 		body type: 'text'
+		sort dateCreated: "desc"
 	}
 
 	String name

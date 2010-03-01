@@ -32,10 +32,6 @@
         <b:numComments post='${post}' />
       </p>
 
-      <b:isAuthenticated>
-        <g:link action='edit' controller='post' id='${post.id}'>Edit</g:link>
-      </b:isAuthenticated>
-
       <g:if test='${post.allowComments || post.comments?.size() > 0}'>
         <a name='comments'></a>
         <h4 class='blueblk'>Comments</h4>

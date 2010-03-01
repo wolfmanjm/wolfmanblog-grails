@@ -24,3 +24,4 @@ grails.project.dependency.resolution = {
     }
 
 }
+//grails.project.plugins.dir="./plugins"
