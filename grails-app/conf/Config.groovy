@@ -49,7 +49,8 @@ environments {
         grails.serverURL = "http://localhost:8080/${appName}"
     }
     test {
-        grails.serverURL = "http://localhost:8080/${appName}"
+		grails.serverURL = "http://localhost:8080/${appName}"
+		springcache.disabled = true
     }
 
 }
@@ -91,24 +92,13 @@ grails.gorm.default.mapping = {
 }
 
 springcache {
-	cachingModels {
-		PostController.cacheName = "postControllerCache"
-		SidebarController.cacheName = "sidebarControllerCache"
+	defaults {
+		blocking = true
+		eternal = true
 	}
-	flushingModels {
-		PostController.cacheNames = "postControllerCache"
-		All.cacheNames = "postControllerCache,sidebarControllerCache"
-	}
-	
+
 	caches {
-		postControllerCache {
-			blocking = true
-			eternal = true
-		}
-		sidebarControllerCache {
-			blocking = true
-			eternal = true
-		}
+		postsCache
+		sidebarCache
 	}
 }
- 

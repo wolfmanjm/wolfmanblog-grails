@@ -4,7 +4,7 @@ import grails.plugin.springcache.annotations.Cacheable
 class SidebarController {
 	
 	// create the tag soup
-	@Cacheable(modelId = "SidebarController")
+	@Cacheable("sidebarCache")
 	def tags = {         		
 		def tags= Tag.listWithCount(20)		
 		def total= tags.inject(0) { total, tag -> total += tag.count }
@@ -21,22 +21,22 @@ class SidebarController {
 		[tags: tags.sort{x,y -> x.name <=> y.name}, sizes: sizes]
 	}
 	
-	@Cacheable(modelId = "SidebarController")
+	@Cacheable("sidebarCache")
 	def categories = {
 		[categories: Category.getCategories()]
 	}
 	
-	@Cacheable(modelId = "SidebarController")
+	@Cacheable("postsCache")
 	def recentComments = {
 		[comments:  Comment.list(fetch:[post:"eager"], max: 10, sort: 'dateCreated', order:'desc')]
 	}
 	
-	@Cacheable(modelId = "SidebarController")
+	@Cacheable("sidebarCache")
 	def statics = {
 		[statics: Static.listOrderByPosition()]
 	}
 	
-	@Cacheable(modelId = "SidebarController")
+	@Cacheable("postsCache")
 	def recentPosts = {
 		[posts: Post.listOrderByLastUpdated(order:"desc", max: 5)]
 	}

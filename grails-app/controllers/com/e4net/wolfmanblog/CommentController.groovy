@@ -2,7 +2,7 @@ package com.e4net.wolfmanblog
 
 class CommentController {
 	def scaffold = true
-	def springcacheCacheManager
+	def springcacheService
 
 	// have these scaffolded actions clear the cache
 	def afterInterceptor = [action:this.&clearCache, only:['delete', 'update']]
@@ -10,7 +10,7 @@ class CommentController {
 	// defined as a regular method so its private
 	def clearCache(model) {
 		log.debug "clearing cache as comment deleted"
-		springcacheCacheManager.clearAll()
+		springcacheService.flush("postsCache")
 	}
 
 	def rss = {

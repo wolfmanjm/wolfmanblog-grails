@@ -11,7 +11,7 @@ class PostController {
 	def scaffold = true
 	def blogService
 
-	@Cacheable(modelId = "PostController")
+	@Cacheable("postsCache")
 	def index = {		
 		// don't allow more than 10 to show, even if asked by request
 		params.max = Math.min(params.max ? params.max.toInteger() : 4, 10)
@@ -34,7 +34,7 @@ class PostController {
 			render(status: 404, text: "invalid id")
 	}
 	
-	@Cacheable(modelId = "PostController")
+	@Cacheable("postsCache")
 	def show = {
 		def post= Post.findByPermalink(params.id)
 		if(!post){
@@ -62,7 +62,7 @@ class PostController {
 		render(view: 'index', model: [posts: posts, postCount: postCount])
 	}
 	
-	@CacheFlush(modelId = "All")
+	@CacheFlush("postsCache")
 	def addComment = {
 		log.debug "add comment: ${params}"
 		def id= params.id
@@ -147,7 +147,7 @@ class PostController {
 		}
 	}
 	
-	@CacheFlush(modelId = "All")
+	@CacheFlush(["postsCache", "sidebarCache"])
 	def upload = {		
 		try {
 			blogService.createOrUpdatePost(request)
@@ -171,7 +171,7 @@ class PostController {
 		return [postInstance: postInstance]
 	}
 	
-	@CacheFlush(modelId = "All")
+	@CacheFlush(["postsCache", "sidebarCache"])
 	def save = {
 		def postInstance = new Post(params)
 		try {
@@ -198,7 +198,7 @@ class PostController {
 		}
 	}
 	
-	@CacheFlush(modelId = "All")
+	@CacheFlush(["postsCache", "sidebarCache"])
 	def update = {
 		def postInstance = Post.get(params.id)
 		if (postInstance) {
@@ -214,7 +214,7 @@ class PostController {
 			postInstance.properties = params
 			if (!postInstance.hasErrors() && postInstance.save(flush: true)) {
 				flash.message = "${message(code: 'default.updated.message', args: [message(code: 'post.label', default: 'Post'), postInstance.id])}"
-				redirect(action: "show", id: postInstance.id)
+				redirect(action: "showById", id: postInstance.id)
 			}
 			else {
 				render(view: "edit", model: [postInstance: postInstance])
@@ -226,7 +226,7 @@ class PostController {
 		}
 	}
 	
-	@CacheFlush(modelId = "All")
+	@CacheFlush(["postsCache", "sidebarCache"])
 	def delete = {
 		def postInstance = Post.get(params.id)
 		if (postInstance) {
@@ -237,7 +237,7 @@ class PostController {
 			}
 			catch (org.springframework.dao.DataIntegrityViolationException e) {
 				flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'post.label', default: 'Post'), params.id])}"
-				redirect(action: "show", id: params.id)
+				redirect(action: "showById", id: params.id)
 			}
 		}
 		else {
