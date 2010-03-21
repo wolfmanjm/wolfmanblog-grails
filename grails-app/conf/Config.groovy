@@ -57,21 +57,21 @@ environments {
 
 // log4j configuration
 log4j = {
-    // Example of changing the log pattern for the default console
-    // appender:
-    //
-    appenders {
-        console name:'stdout', layout:pattern(conversionPattern: '%-4r [%t] %-5p %c %x - %m%n'), threshold: org.apache.log4j.Level.DEBUG 
-    }
+	// Example of changing the log pattern for the default console
+	// appender:
+	//
+	appenders {
+		console name:'stdout', layout:pattern(conversionPattern: '%-4r [%t] %-5p %c %x - %m%n'), threshold: org.apache.log4j.Level.DEBUG 
+	}
 
-    debug "grails.app"
-    debug "com.e4net"
-    debug "grails.plugin.springcache"
+	debug "grails.app"
+	debug "com.e4net"
+	debug "grails.plugin.springcache"
 	
-    info "com.linkedin.grails"
+	info "com.linkedin.grails"
 
 	
-    error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
+	error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
 	       'org.codehaus.groovy.grails.web.pages', //  GSP
 	       'org.codehaus.groovy.grails.web.sitemesh', //  layouts
 	       'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
@@ -81,8 +81,8 @@ log4j = {
 	       'org.codehaus.groovy.grails.orm.hibernate', // hibernate integration
 	       'org.springframework',
 	       'org.hibernate'
-
-    warn   'org.mortbay.log'
+	
+	warn   'org.mortbay.log'
 }
 
 
