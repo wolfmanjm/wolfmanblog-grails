@@ -16,3 +16,12 @@ web-app/index.gsp
 out
 target
 .emacs.desktop
+/.emacs.desktop.lock
+/cookies
+/migrations.tar.gz
+/profile-1.log
+/spy.log.1
+/sqlindex.txt
+/test/features/webrat.log
+/timings.txt
+/wolfmanblog.ids
