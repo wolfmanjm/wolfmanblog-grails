@@ -155,12 +155,12 @@ class BlogService {
 	}
 }
 
-class MyUserException extends RuntimeException {
+class MyUserException extends Throwable {
 	String message
 	User user
 }
 
-class MyPostException extends RuntimeException {
+class MyPostException extends Throwable {
 	String message
 }
 
