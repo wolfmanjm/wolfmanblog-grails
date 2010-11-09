@@ -1,7 +1,7 @@
 <div class='sidebar-node'>
   <h3>Links</h3>
   <ul>
-    <li><g:link url="http://www.e4chat.com"> e4Chat Voice Chat</g:link></li>
+    <li><g:link url="http://www.e4net.com"> e4Chat Voice Chat</g:link></li>
     <li><g:link url="http://www.wolfman.com">Personal Home page </g:link></li>
     <li><g:link url="http://www.facebook.com/people/Jim-Morris/679984614">Facebook</g:link></li>
     <li><g:link url="http://github.com/wolfmanjm">Github</g:link></li>
